@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storeLaboratorioRequest;
+use App\Http\Requests\updateLaboratorioRequest;
+use App\Models\Caracteristica;
+use App\Models\Laboratorio;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class laboratorioController extends Controller
 {
@@ -11,7 +17,9 @@ class laboratorioController extends Controller
      */
     public function index()
     {
-        //
+        $laboratorios = Laboratorio::with("caracteristica")->latest()->get();
+
+        return view("laboratorio.index", ["laboratorios" => $laboratorios]);
     }
 
     /**
@@ -19,15 +27,26 @@ class laboratorioController extends Controller
      */
     public function create()
     {
-        //
+        return view("laboratorio.create");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(storeLaboratorioRequest $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $caracteristica = Caracteristica::create($request->validated());
+            $caracteristica->laboratorio()->create([
+                'caracteristica_id' => $caracteristica-> id
+            ]);
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+        }
+
+        return redirect()->route('laboratorios.index')->with('success','Laboratorio Registrado Correctamente');
     }
 
     /**
@@ -41,17 +60,19 @@ class laboratorioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Laboratorio $laboratorio)
     {
-        //
+        return view('laboratorio.edit', ['laboratorio'=> $laboratorio]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(updateLaboratorioRequest $request, Laboratorio $laboratorio)
     {
-        //
+        Caracteristica::where('id', $laboratorio->caracteristica->id)->update($request->validated());
+
+        return redirect()->route('laboratorios.index')->with('success','Laboratorio Editado Correctamente');
     }
 
     /**
@@ -59,6 +80,22 @@ class laboratorioController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $message = '';
+        $laboratorio = Laboratorio::find($id);
+        if ($laboratorio->caracteristica->estado == 1) {
+            Caracteristica::where('id', $laboratorio->caracteristica->id)
+                ->update([
+                    'estado' => 0
+                ]);
+            $message = 'Laboratorio eliminado';
+        } else {
+            Caracteristica::where('id', $laboratorio->caracteristica->id)
+                ->update([
+                    'estado' => 1
+                ]);
+            $message = 'Laboratorio restaurado';
+        }
+
+        return redirect()->route('laboratorios.index')->with('success', $message);
     }
 }

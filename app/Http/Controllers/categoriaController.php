@@ -45,7 +45,7 @@ class categoriaController extends Controller
             DB::rollBack();
         }
 
-        return redirect()->route('categorias.index')->with('success', 'Categoria registrada');
+        return redirect()->route('categorias.index')->with('success', 'Categoria Registrada Correctamente');
     }
     public function show(string $id)
     {
@@ -68,7 +68,7 @@ class categoriaController extends Controller
         Caracteristica::where('id', $categoria->caracteristica->id)
             ->update($request->validated());
 
-        return redirect()->route('categorias.index')->with('success', 'Categoría editada');
+        return redirect()->route('categorias.index')->with('success', 'Categoría Editada Correctamente');
     }
 
     /**
