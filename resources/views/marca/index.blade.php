@@ -6,7 +6,7 @@
 
 @section('content')
 
-@include('layouts.partials.alert')
+    @include('layouts.partials.alert')
 
     <div class="container mx-auto">
         <div class="row pt-4">
@@ -69,18 +69,19 @@
                                                     <button type="submit" class="bg-warning py-2 px-3 rounded-md"><span
                                                             class="fas fa-fw fa-pen text-white"></span></button>
                                                 </a>
-                                                <form
-                                                    action="{{ route('marcas.destroy', ['marca' => $marca->id]) }}"
+                                                <form action="{{ route('marcas.destroy', ['marca' => $marca->id]) }}"
                                                     class="d-inline form-eliminar" method="POST">
                                                     @method('DELETE')
                                                     @csrf
 
                                                     @if ($marca->caracteristica->estado == 1)
-                                                        <button type="submit" class="bg-red-600 hover:bg-red-700 py-2 px-3 rounded-md"><span
+                                                        <button type="submit"
+                                                            class="bg-red-600 hover:bg-red-700 py-2 px-3 rounded-md"><span
                                                                 class="fas fa-fw fa-trash text-white"></span>
                                                         </button>
                                                     @else
-                                                        <button type="submit" class="bg-slate-500 hover:bg-slate-600 py-2 px-3 rounded-md"><span
+                                                        <button type="submit"
+                                                            class="bg-slate-500 hover:bg-slate-600 py-2 px-3 rounded-md"><span
                                                                 class="fas fa-fw fa-share text-white"></span>
                                                         </button>
                                                     @endif

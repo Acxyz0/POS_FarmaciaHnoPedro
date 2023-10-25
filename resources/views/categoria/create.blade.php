@@ -16,14 +16,16 @@
                     <div class="row">
                         <div class="col-6">
                             <label for="nombre" class="form-label">Nombre:</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control" value="{{old('nombre')}}">
+                            <input type="text" name="nombre" id="nombre" class="form-control"
+                                value="{{ old('nombre') }}">
                             @error('nombre')
                                 <small class="text-red-500 font-bold">{{ '*' . 'El campo nombre es requerido' }}</small>
                             @enderror
                         </div>
                         <div class="col-12">
                             <label for="descripcion" class="form-label">Descripción:</label>
-                            <input name="descripcion" id="descripcion" rows="3" class="form-control" value="{{ old('descripcion') }}">
+                            <input name="descripcion" id="descripcion" rows="3" class="form-control"
+                                value="{{ old('descripcion') }}">
                         </div>
                     </div>
                 </div>
@@ -51,10 +53,6 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.36);
-        }
-
-        #descripcion {
-            resize: none;
         }
     </style>
 @endpush

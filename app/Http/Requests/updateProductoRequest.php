@@ -24,10 +24,10 @@ class updateProductoRequest extends FormRequest
         $producto = $this->route('producto');
         return [
             'codigo' => 'required|unique:productos,codigo,'.$producto->id.'|max:50',
-            'nombre' => 'required|unique:productos,nombre,'.$producto->id.'|max:80',
+            'nombre' => 'required|max:80',
             'descripcion' => 'nullable|max:255',
             'fecha_vencimiento' => 'nullable|date',
-            'lote' => 'required|integer',
+            'lote' => 'required|max:15',
             'marca_id' => 'required|integer|exists:marcas,id',
             'laboratorio_id' => 'required|integer|exists:laboratorios,id',
             'presentacione_id' => 'required|integer|exists:presentaciones,id',

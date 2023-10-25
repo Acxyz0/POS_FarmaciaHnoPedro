@@ -12,7 +12,7 @@
         <div class="row pt-4">
             <div class="col">
                 <div class="card">
-                    <div class=" mx-auto text-teal-500 font-bold text-3xl">
+                    <div class=" mx-auto text-teal-500 font-bold text-3xl pt-3">
                         PRODUCTOS
                     </div>
                     <div class="card-body">
@@ -39,12 +39,15 @@
                             </div>
                         </div>
                         <div id="content-table">
-                            <table class="table table-auto whitespace-nowrap text-md">
+                            <table class="table table-hover whitespace-nowrap text-md">
                                 <thead class="bg-info text-white">
                                     <tr>
                                         <th>Código</th>
                                         <th>Nombre</th>
+                                        <th>Descripción</th>
                                         <th>Lote</th>
+                                        <th>Fecha de Vencimiento</th>
+                                        <th>Stock</th>
                                         <th>Marca</th>
                                         <th>Presentación</th>
                                         <th>Laboratorio</th>
@@ -56,14 +59,32 @@
                                 <tbody>
                                     @foreach ($productos as $item)
                                         <tr>
-                                            <td>
-                                                {{$item->codigo}}
+                                            <td class="text-right">
+                                                {{ $item->codigo }}
                                             </td>
                                             <td>
-                                                {{$item->nombre}}
+                                                {{ $item->nombre }}
                                             </td>
                                             <td>
-                                                {{$item->lote}}
+                                                {{ $item->descripcion }}
+                                            </td>
+                                            <td class="text-right">
+                                                {{ $item->lote }}
+                                            </td>
+                                            <td class="text-right">
+                                                {{ $item->fecha_vencimiento }}
+                                            </td>
+                                            <td class="text-center">
+                                                @if ($item->stock == 0)
+                                                    <span
+                                                        class="bg-red-600 text-white py-1 px-2 rounded-sm">{{ $item->stock }}</span>
+                                                @elseif ($item->stock <= 10)
+                                                    <span
+                                                        class="bg-yellow-400 text-white py-1 px-1 rounded-sm">{{ $item->stock }}</span>
+                                                @else
+                                                    <span
+                                                        class="bg-green-500 text-white py-1 px-1 rounded-sm">{{ $item->stock }}</span>
+                                                @endif
                                             </td>
                                             <td>
                                                 {{ $item->marca->caracteristica->nombre }}
@@ -76,11 +97,12 @@
                                             </td>
                                             <td>
                                                 @foreach ($item->categorias as $category)
-                                                <div class="container text-center">
-                                                    <div class="row">
-                                                        <span class="rounded-md py-1 px-2 w-full bg-slate-400 text-white">{{$category->caracteristica->nombre}}</span>
+                                                    <div class="container text-center">
+                                                        <div class="row py-0.5">
+                                                            <span
+                                                                class="rounded-md py-1 px-2 w-full bg-slate-400 text-white">{{ $category->caracteristica->nombre }}</span>
+                                                        </div>
                                                     </div>
-                                                </div>
                                                 @endforeach
                                             </td>
                                             <td class="text-center">
@@ -91,15 +113,14 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{-- route('productos.edit', ['producto' => $item]) --}}">
+                                                <a href="{{ route('productos.edit', ['producto' => $item]) }}">
                                                     <button type="submit" class="bg-warning py-2 px-3 rounded-md"><span
                                                             class="fas fa-fw fa-pen text-white"></span></button>
                                                 </a>
-                                                <form
-                                                    action="{{-- route('productos.destroy', ['producto' => $item->id]) --}}"
-                                                    class="d-inline form-eliminar" method="POST">
-                                                    {{-- @method('DELETE')
-                                                    @csrf --}}
+                                                <form action="{{ route('productos.destroy', ['producto' => $item->id]) }}"
+                                                    class="d-inline" method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
 
                                                     @if ($item->estado == 1)
                                                         <button type="submit"
@@ -129,7 +150,7 @@
 @stop
 
 @push('css')
-    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .card {
             display: flex;
@@ -137,7 +158,7 @@
             border-radius: 12px;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.36);
         }
-    </style> --}}
+    </style>
 @endpush
 
 @section('js')

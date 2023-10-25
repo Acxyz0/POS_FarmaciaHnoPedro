@@ -65,7 +65,8 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ route('presentaciones.edit', ['presentacione' => $presentacione]) }}">
+                                                <a
+                                                    href="{{ route('presentaciones.edit', ['presentacione' => $presentacione]) }}">
                                                     <button type="submit" class="bg-warning py-2 px-3 rounded-md"><span
                                                             class="fas fa-fw fa-pen text-white"></span></button>
                                                 </a>

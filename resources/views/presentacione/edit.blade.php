@@ -59,10 +59,6 @@
             border-radius: 12px;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.36);
         }
-
-        #descripcion {
-            resize: none;
-        }
     </style>
 @endpush
 
