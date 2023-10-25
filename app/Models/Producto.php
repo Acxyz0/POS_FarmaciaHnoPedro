@@ -15,10 +15,10 @@ class Producto extends Model
         'nombre',
         'descripcion',
         'fecha_vencimiento',
+        'lote',
         'marca_id',
-        'presentacione_id',
         'laboratorio_id',
-        'img_path'
+        'presentacione_id'
     ];
 
     public function compras()
@@ -51,15 +51,5 @@ class Producto extends Model
     public function laboratorio()
     {
         return $this->belongsTo(Laboratorio::class);
-    }
-
-    public function handleUploadImage($image)
-    {
-        $file = $image;
-        $name = time() . $file->getClientOriginalName();
-        //$file->move(public_path() . '/img/productos/', $name);
-        Storage::putFileAs('/public/productos/',$file,$name,'public');
-
-        return $name;
     }
 }

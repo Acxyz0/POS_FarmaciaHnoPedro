@@ -16,7 +16,7 @@ class presentacioneController extends Controller
      */
     public function index()
     {
-        $presentaciones = Presentacione::with("caracteristica")->latest->get();
+        $presentaciones = Presentacione::with("caracteristica")->latest()->get();
 
         return view("presentacione.index", ["presentaciones" => $presentaciones]);
     }
@@ -72,7 +72,7 @@ class presentacioneController extends Controller
         Caracteristica::where('id', $presentacione->caracteristica->id)
             ->update($request->validated());
 
-        return redirect()->route('laboratorios.index')->with('success', 'Presentacion Editada Correctamente');
+        return redirect()->route('presentaciones.index')->with('success', 'Presentacion Editada Correctamente');
     }
 
     /**
@@ -81,21 +81,21 @@ class presentacioneController extends Controller
     public function destroy(string $id)
     {
         $message = '';
-        $laboratorio = Presentacione::find($id);
-        if ($laboratorio->caracteristica->estado == 1) {
-            Caracteristica::where('id', $laboratorio->caracteristica->id)
+        $presentacione = Presentacione::find($id);
+        if ($presentacione->caracteristica->estado == 1) {
+            Caracteristica::where('id', $presentacione->caracteristica->id)
                 ->update([
                     'estado' => 0
                 ]);
-            $message = 'Categoría eliminada';
+            $message = 'Presentación eliminada';
         } else {
-            Caracteristica::where('id', $laboratorio->caracteristica->id)
+            Caracteristica::where('id', $presentacione->caracteristica->id)
                 ->update([
                     'estado' => 1
                 ]);
-            $message = 'Categoría restaurada';
+            $message = 'Presentación restaurada';
         }
 
-        return redirect()->route('laboratorios.index')->with('success', $message);
+        return redirect()->route('presentaciones.index')->with('success', $message);
     }
 }

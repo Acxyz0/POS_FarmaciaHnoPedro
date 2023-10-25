@@ -385,11 +385,6 @@ return [
             'icon'    => 'fas fa-fw fa-boxes',
             'submenu' => [
                 [
-                    'text' => 'Almacén',
-                    'url'  => 'almacen',
-                    'icon' => 'fas fa-fw fa-box',
-                ],
-                [
                     'text' => 'Lista de Productos',
                     'url'  => 'productos',
                     'icon' => 'fas fa-fw fa-list',
@@ -406,19 +401,19 @@ return [
                 ],
                 [
                     'text' => 'Laboratorio',
-                    'url'  => 'laboratorio',
+                    'url'  => 'laboratorios',
                     'icon' => 'fas fa-fw fa-flask',
                 ],
                 [
                     'text' => 'Presentaciones',
-                    'url'  => 'presentacion',
+                    'url'  => 'presentaciones',
                     'icon' => 'fas fa-fw fa-tags',
                 ],
             ],
         ],
         [
-            'text'    => 'Varios',
-            'icon'    => 'fas fa-fw fa-sitemap',
+            'text'    => 'Personas',
+            'icon'    => 'fas fa-fw fa-users',
             'submenu' => [                
                 [
                     'text' => 'Proveedores',

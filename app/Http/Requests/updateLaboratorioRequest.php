@@ -11,7 +11,7 @@ class updateLaboratorioRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,12 @@ class updateLaboratorioRequest extends FormRequest
      */
     public function rules(): array
     {
+        $laboratorio = $this->route('laboratorio');
+        $caracteristicaId = $laboratorio->caracteristica->id;
+
         return [
-            //
+            'nombre' => 'required|max:60|unique:caracteristicas,nombre,'.$caracteristicaId,
+            'descripcion' => 'nullable|max:255'
         ];
     }
 }

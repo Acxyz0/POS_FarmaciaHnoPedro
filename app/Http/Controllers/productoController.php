@@ -2,7 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storeProductoRequest;
+use App\Models\Categoria;
+use App\Models\Laboratorio;
+use App\Models\Marca;
+use App\Models\Presentacione;
+use App\Models\Producto;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class productoController extends Controller
 {
@@ -11,7 +19,9 @@ class productoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Producto::with(['categorias.caracteristica', 'marca.caracteristica', 'presentacione.caracteristica', 'laboratorio.caracteristica'])->latest()->get();
+
+        return view('producto.index', compact('productos'));
     }
 
     /**
@@ -19,20 +29,67 @@ class productoController extends Controller
      */
     public function create()
     {
-        //
+        $marcas = Marca::join('caracteristicas as c', 'marcas.caracteristica_id', '=', 'c.id')
+            ->select('marcas.id as id', 'c.nombre as nombre')
+            ->where('c.estado', 1)
+            ->get();
+
+        $presentaciones = Presentacione::join('caracteristicas as c', 'presentaciones.caracteristica_id', '=', 'c.id')
+            ->select('presentaciones.id as id', 'c.nombre as nombre')
+            ->where('c.estado', 1)
+            ->get();
+
+        $categorias = Categoria::join('caracteristicas as c', 'categorias.caracteristica_id', '=', 'c.id')
+            ->select('categorias.id as id', 'c.nombre as nombre')
+            ->where('c.estado', 1)
+            ->get();
+
+        $laboratorios = Laboratorio::join('caracteristicas as c', 'laboratorios.caracteristica_id', '=', 'c.id')
+            ->select('laboratorios.id as id', 'c.nombre as nombre')
+            ->where('c.estado', 1)
+            ->get();
+
+        return view('producto.create', compact('marcas', 'presentaciones', 'categorias', 'laboratorios'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(storeProductoRequest $request)
     {
-        //
+        // dd($request);
+        try {
+            DB::beginTransaction();
+            
+            $producto = new Producto();
+
+            $producto->fill([
+                'codigo' => $request->codigo,
+                'nombre' => $request->nombre,
+                'descripcion' => $request->descripcion,
+                'fecha_vencimiento' => $request->fecha_vencimiento,
+                'lote' => $request->lote,
+                'marca_id' => $request->marca_id,
+                'laboratorio_id' => $request->laboratorio_id,
+                'presentacione_id' => $request->presentacione_id
+            ]);
+
+            $producto->save();
+
+            //Tabla categoría producto
+            $categorias = $request->get('categorias');
+            $producto->categorias()->attach($categorias);
+            
+            DB::commit();
+        } catch (Exception $e) {
+            dd($e);
+            DB::rollBack();
+        }
+
+        return redirect()->route('productos.index')->with('success', 'Producto Registrado');
+    
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
