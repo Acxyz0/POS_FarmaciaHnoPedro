@@ -349,12 +349,12 @@ return [
             'submenu' => [                
                 [
                     'text' => 'Nueva Compra',
-                    'url'  => 'compras',
+                    'url'  => 'compras/create',
                     'icon' => 'fas fa-fw fa-receipt',
                 ],
                 [
                     'text' => 'Registro de Compras',
-                    'url'  => '#',
+                    'url'  => 'compras',
                     'icon' => 'fas fa-fw fa-list',
                 ],
             ],
@@ -422,7 +422,7 @@ return [
                 ],
                 [
                     'text' => 'Clientes',
-                    'url'  => '#',
+                    'url'  => 'clientes',
                     'icon' => 'fas fa-fw fa-users',
                 ],
             ],

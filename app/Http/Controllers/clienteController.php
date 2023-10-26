@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\storePersonaRequest;
-use App\Http\Requests\updateProveedoreRequest;
+use App\Http\Requests\updateClienteRequest;
+use App\Models\Cliente;
 use App\Models\Documento;
 use App\Models\Persona;
-use App\Models\Proveedore;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class proveedoreController extends Controller
+class clienteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $proveedores = Proveedore::with('persona.documento')->get();
-        return view('proveedore.index',compact('proveedores'));
+        $clientes = Cliente::with('persona.documento')->get();
+        return view('cliente.index', compact('clientes'));
     }
 
     /**
@@ -28,7 +28,7 @@ class proveedoreController extends Controller
     public function create()
     {
         $documentos = Documento::all();
-        return view('proveedore.create',compact('documentos'));
+        return view('cliente.create', compact('documentos'));
     }
 
     /**
@@ -39,7 +39,7 @@ class proveedoreController extends Controller
         try {
             DB::beginTransaction();
             $persona = Persona::create($request->validated());
-            $persona->proveedore()->create([
+            $persona->cliente()->create([
                 'persona_id' => $persona->id
             ]);
             DB::commit();
@@ -47,8 +47,7 @@ class proveedoreController extends Controller
             DB::rollBack();
         }
 
-        return redirect()->route('proveedores.index')->with('success', 'Proveedor registrado');
-
+        return redirect()->route('clientes.index')->with('success', 'Cliente registrado');
     }
 
     /**
@@ -62,30 +61,30 @@ class proveedoreController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Proveedore $proveedore)
+    public function edit(Cliente $cliente)
     {
-        $proveedore->load('persona.documento');
+        $cliente->load('persona.documento');
         $documentos = Documento::all();
-        return view('proveedore.edit',compact('proveedore','documentos'));
+        return view('cliente.edit', compact('cliente', 'documentos'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(updateProveedoreRequest $request, Proveedore $proveedore)
+    public function update(updateClienteRequest $request, Cliente $cliente)
     {
-        try{
+        try {
             DB::beginTransaction();
 
-            Persona::where('id',$proveedore->persona->id)
-            ->update($request->validated());
+            Persona::where('id', $cliente->persona->id)
+                ->update($request->validated());
 
             DB::commit();
-        }catch(Exception $e){
+        } catch (Exception $e) {
             DB::rollBack();
         }
 
-        return redirect()->route('proveedores.index')->with('success','Proveedor editado');
+        return redirect()->route('clientes.index')->with('success', 'Cliente editado');
     }
 
     /**
@@ -100,15 +99,15 @@ class proveedoreController extends Controller
                 ->update([
                     'estado' => 0
                 ]);
-            $message = 'Proveedor eliminado';
+            $message = 'Cliente eliminado';
         } else {
             Persona::where('id', $persona->id)
                 ->update([
                     'estado' => 1
                 ]);
-            $message = 'Proveedor restaurado';
+            $message = 'Cliente restaurado';
         }
 
-        return redirect()->route('proveedores.index')->with('success', $message);
+        return redirect()->route('clientes.index')->with('success', $message);
     }
 }

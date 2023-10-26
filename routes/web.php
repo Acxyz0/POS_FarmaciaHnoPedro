@@ -1,24 +1,17 @@
 <?php
 
 use App\Http\Controllers\categoriaController;
+use App\Http\Controllers\clienteController;
+use App\Http\Controllers\compraController;
 use App\Http\Controllers\laboratorioController;
 use App\Http\Controllers\marcaController;
 use App\Http\Controllers\presentacioneController;
 use App\Http\Controllers\productoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\proveedoreController;
+use App\Http\Controllers\ventaController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,5 +36,8 @@ route::resources([
     'presentaciones' => presentacioneController::class,
     'proveedores' => proveedoreController::class,
     'laboratorios' => laboratorioController::class,
-    'productos' => productoController::class
+    'productos' => productoController::class,
+    'compras' => compraController::class,
+    'ventas' => ventaController::class,
+    'clientes' => clienteController::class,
 ]);
