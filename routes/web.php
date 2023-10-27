@@ -9,6 +9,8 @@ use App\Http\Controllers\presentacioneController;
 use App\Http\Controllers\productoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\proveedoreController;
+use App\Http\Controllers\roleController;
+use App\Http\Controllers\userController;
 use App\Http\Controllers\ventaController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,4 +42,6 @@ route::resources([
     'compras' => compraController::class,
     'ventas' => ventaController::class,
     'clientes' => clienteController::class,
+    'users' => userController::class,
+    'roles' => roleController::class
 ]);

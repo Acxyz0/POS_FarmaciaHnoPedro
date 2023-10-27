@@ -25,19 +25,19 @@
                             <small class="text-danger">{{'*'.$message}}</small>
                             @enderror
                         </div>
-    
+
                         <!-------Razón social------->
                         <div class="col-12" id="box-razon-social">
                             <label id="label-natural" for="razon_social" class="form-label">Nombres y apellidos:</label>
                             <label id="label-juridica" for="razon_social" class="form-label">Nombre de la empresa:</label>
-    
+
                             <input required type="text" name="razon_social" id="razon_social" class="form-control" value="{{old('razon_social')}}">
-    
+
                             @error('razon_social')
                             <small class="text-danger">{{'*'.$message}}</small>
                             @enderror
                         </div>
-    
+
                         <!------Dirección---->
                         <div class="col-12">
                             <label for="direccion" class="form-label">Dirección:</label>
@@ -46,7 +46,7 @@
                             <small class="text-danger">{{'*'.$message}}</small>
                             @enderror
                         </div>
-    
+
                         <!--------------Documento------->
                         <div class="col-md-6">
                             <label for="documento_id" class="form-label">Tipo de documento:</label>
@@ -60,7 +60,7 @@
                             <small class="text-danger">{{'*'.$message}}</small>
                             @enderror
                         </div>
-    
+
                         <div class="col-md-6">
                             <label for="numero_documento" class="form-label">Numero de documento:</label>
                             <input required type="text" name="numero_documento" id="numero_documento" class="form-control" value="{{old('numero_documento')}}">
@@ -113,7 +113,6 @@
                 $('#label-natural').hide();
                 $('#label-juridica').show();
             }
-
             $('#box-razon-social').show();
         });
     });

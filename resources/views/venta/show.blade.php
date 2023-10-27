@@ -74,7 +74,7 @@
                                 <span title="Proveedor" id="icon-form" class="input-group-text"><i
                                         class="fas fa-user-tie"></i></span>
                                 <input disabled type="text" class="form-control"
-                                    value="{{ $venta->proveedore->persona->razon_social }}">
+                                    value="{{ $venta->cliente->persona->razon_social }}">
                             </div>
                         </div>
                     </div>
@@ -83,14 +83,14 @@
                     <div class="row mb-4">
                         <div class="col-sm-6">
                             <div class="input-group" id="hide-group">
-                                <span class="input-group-text"><i class="fas fa-calendar-days"></i></span>
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                 <input disabled type="text" class="form-control" value="Fecha: ">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="input-group">
                                 <span title="Fecha" id="icon-form" class="input-group-text"><i
-                                        class="fas fa-calendar-days"></i></span>
+                                        class="fas fa-calendar"></i></span>
                                 <input disabled type="text" class="form-control"
                                     value="{{ \Carbon\Carbon::parse($venta->fecha_hora)->format('d-m-Y') }}">
                             </div>

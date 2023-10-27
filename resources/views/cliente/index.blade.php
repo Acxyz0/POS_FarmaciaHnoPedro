@@ -78,7 +78,7 @@
                                                     <button type="submit" class="bg-warning py-2 px-3 rounded-md"><span
                                                             class="fas fa-fw fa-pen text-white"></span></button>
                                                 </a>
-                                                <form action="{{ route('clientes.destroy', ['cliente' => $item->id]) }}"
+                                                <form action="{{ route('clientes.destroy', ['cliente' => $item->persona->id]) }}"
                                                     class="d-inline form-eliminar" method="POST">
                                                     @method('DELETE')
                                                     @csrf

@@ -2,17 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\storePersonaRequest;
-use App\Http\Requests\updateProveedoreRequest;
+use App\Http\Requests\StorePersonaRequest;
+use App\Http\Requests\UpdateProveedoreRequest;
 use App\Models\Documento;
 use App\Models\Persona;
 use App\Models\Proveedore;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class proveedoreController extends Controller
 {
+    // function __construct()
+    // {
+    //     $this->middleware('permission:ver-proveedore|crear-proveedore|editar-proveedore|eliminar-proveedore', ['only' => ['index']]);
+    //     $this->middleware('permission:crear-proveedore', ['only' => ['create', 'store']]);
+    //     $this->middleware('permission:editar-proveedore', ['only' => ['edit', 'update']]);
+    //     $this->middleware('permission:eliminar-proveedore', ['only' => ['destroy']]);
+    // }
     /**
      * Display a listing of the resource.
      */
@@ -34,7 +40,7 @@ class proveedoreController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(storePersonaRequest $request)
+    public function store(StorePersonaRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -48,7 +54,6 @@ class proveedoreController extends Controller
         }
 
         return redirect()->route('proveedores.index')->with('success', 'Proveedor registrado');
-
     }
 
     /**
@@ -72,7 +77,7 @@ class proveedoreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(updateProveedoreRequest $request, Proveedore $proveedore)
+    public function update(UpdateProveedoreRequest $request, Proveedore $proveedore)
     {
         try{
             DB::beginTransaction();

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\storePersonaRequest;
-use App\Http\Requests\updateClienteRequest;
+use App\Http\Requests\StorePersonaRequest;
+use App\Http\Requests\UpdateClienteRequest;
 use App\Models\Cliente;
 use App\Models\Documento;
 use App\Models\Persona;
@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class clienteController extends Controller
 {
+    // function __construct()
+    // {
+    //     $this->middleware('permission:ver-cliente|crear-cliente|editar-cliente|eliminar-cliente', ['only' => ['index']]);
+    //     $this->middleware('permission:crear-cliente', ['only' => ['create', 'store']]);
+    //     $this->middleware('permission:editar-cliente', ['only' => ['edit', 'update']]);
+    //     $this->middleware('permission:eliminar-cliente', ['only' => ['destroy']]);
+    // }
     /**
      * Display a listing of the resource.
      */
@@ -34,9 +41,8 @@ class clienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(storePersonaRequest $request)
+    public function store(StorePersonaRequest $request)
     {
-        // dd($request);
         try {
             DB::beginTransaction();
             $persona = Persona::create($request->validated());
@@ -72,7 +78,7 @@ class clienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(updateClienteRequest $request, Cliente $cliente)
+    public function update(UpdateClienteRequest $request, Cliente $cliente)
     {
         try {
             DB::beginTransaction();

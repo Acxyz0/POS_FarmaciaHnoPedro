@@ -26,7 +26,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 py-3">
-                        <a href="{{ url('/gestionVentas') }}">
+                        <a href="{{ url('/ventas') }}">
                             <div
                                 class="bg-cyan-500 hover:bg-cyan-600 font-bold text-center px-3 py-4 h-32 rounded-xl shadow-md shadow-slate-400">
                                 <div class="card-icon text-white">
@@ -65,7 +65,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 py-3">
-                        <a href="#">
+                        <a href="/productos">
                             <div
                                 class="bg-red-500 hover:bg-red-600 font-bold text-center px-3 py-4 h-32 rounded-xl shadow-md shadow-slate-400">
                                 <div class="card-icon text-white">

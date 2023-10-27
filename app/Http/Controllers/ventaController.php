@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\storeVentaRequest;
 use App\Models\Cliente;
+use App\Models\Compra;
 use App\Models\Comprobante;
 use App\Models\Producto;
 use App\Models\Venta;
@@ -112,7 +113,7 @@ class ventaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Venta $venta)
     {
         return view('venta.show',compact('venta'));
     }

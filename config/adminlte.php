@@ -433,18 +433,13 @@ return [
             'submenu' => [
                 [
                     'text' => 'Usuarios',
-                    'url'  => 'usuarios',
+                    'url'  => 'users',
                     'icon' => 'fas fa-fw fa-user',
                 ],
                 [
                     'text' => 'Roles',
                     'url'  => 'roles',
                     'icon' => 'fas fa-fw fa-address-book',
-                ],
-                [
-                    'text' => 'Permisos',
-                    'url'  => 'permisos',
-                    'icon' => 'fas fa-fw fa-user-lock',
                 ],
             ],
         ],
