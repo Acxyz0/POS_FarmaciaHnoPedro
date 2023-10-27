@@ -333,12 +333,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Nueva Venta',
-                    'url'  => 'ventas',
+                    'url'  => 'ventas/create',
                     'icon' => 'fas fa-fw fa-cart-plus',
                 ],
                 [
                     'text' => 'Registro de Ventas',
-                    'url'  => '#',
+                    'url'  => 'ventas',
                     'icon' => 'fas fa-fw fa-list',
                 ],
             ],

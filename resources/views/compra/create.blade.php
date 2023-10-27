@@ -42,7 +42,7 @@
                                                 <div class="col-12 mb-4">
                                                     <select name="producto_id" id="producto_id" class="form-control selectpicker" data-live-search="true" data-size="1" title="Busque un producto aquí">
                                                         @foreach ($productos as $item)
-                                                        <option value="{{$item->id}}">{{$item->codigo.' '.$item->nombre}}</option>
+                                                        <option value="{{$item->id}}">{{$item->codigo.' - '.$item->nombre}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

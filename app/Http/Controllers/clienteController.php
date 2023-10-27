@@ -36,6 +36,7 @@ class clienteController extends Controller
      */
     public function store(storePersonaRequest $request)
     {
+        // dd($request);
         try {
             DB::beginTransaction();
             $persona = Persona::create($request->validated());
