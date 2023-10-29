@@ -12,16 +12,16 @@
         <div class="col pt-4">
             <div class="card mb-4">
                 <div class=" mx-auto text-teal-500 font-bold text-3xl">
-                    COMPRAS
+                    USUARIOS
                 </div>
                 <div class="card-body">
                     <div class="mb-4">
                         <a href="{{ route('users.create') }}">
-                            <button type="button" class="btn btn-primary">Añadir nuevo usuario</button>
+                            <button type="button" class="btn btn-info">Añadir nuevo usuario</button>
                         </a>
                     </div>
                     <table id="datatablesSimple" class="table table-striped fs-6">
-                        <thead>
+                        <thead class="bg-info">
                             <tr>
                                 <th>Nombre</th>
                                 <th>Email</th>
@@ -38,47 +38,24 @@
                                         {{ $item->getRoleNames()->first() }}
                                     </td>
                                     <td>
-                                        <div class="d-flex justify-content-around">
+                                        <div class="row text-center space-x-2">
                                             <div>
-                                                <button title="Opciones"
-                                                    class="btn btn-datatable btn-icon btn-transparent-dark me-2"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <svg class="svg-inline--fa fa-ellipsis-vertical" aria-hidden="true"
-                                                        focusable="false" data-prefix="fas" data-icon="ellipsis-vertical"
-                                                        role="img" xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 128 512" data-fa-i2svg="">
-                                                        <path fill="currentColor"
-                                                            d="M56 472a56 56 0 1 1 0-112 56 56 0 1 1 0 112zm0-160a56 56 0 1 1 0-112 56 56 0 1 1 0 112zM0 96a56 56 0 1 1 112 0A56 56 0 1 1 0 96z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                                <ul class="text-bg-light" style="font-size: small;">
-                                                    <!-----Editar usuarios--->
-                                                    {{-- @can('editar-user') --}}
-                                                    <li><a class="dropdown-item"
-                                                            href="{{ route('users.edit', ['user' => $item]) }}">Editar</a>
-                                                    </li>
-                                                    {{-- @endcan --}}
-                                                </ul>
-                                            </div>
-                                            <div>
-                                                <!----Separador----->
-                                                <div class="vr"></div>
+                                                <!-----Editar usuarios--->
+                                                {{-- @can('editar-user') --}}
+                                                <a href="{{ route('users.edit', ['user' => $item]) }}">
+                                                    <button type="submit" class="bg-warning py-2 px-3 rounded-md">
+                                                        <span class="fas fa-fw fa-pen text-white"></span>
+                                                    </button>
+                                                </a>
+                                                {{-- @endcan --}}
                                             </div>
                                             <div>
                                                 <!------Eliminar user---->
                                                 {{-- @can('eliminar-user') --}}
                                                 <button title="Eliminar" data-toggle="modal"
                                                     data-target="#confirmModal-{{ $item->id }}"
-                                                    class="btn btn-datatable btn-icon btn-dark">
-                                                    <svg class="svg-inline--fa fa-trash-can" aria-hidden="true"
-                                                        focusable="false" data-prefix="far" data-icon="trash-can"
-                                                        role="img" xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 448 512" data-fa-i2svg="">
-                                                        <path fill="currentColor"
-                                                            d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z">
-                                                        </path>
-                                                    </svg>
+                                                    class="bg-danger py-2 px-3 rounded-md">
+                                                    <span class="fas fa-trash"></span>
                                                 </button>
                                                 {{-- @endcan --}}
                                             </div>

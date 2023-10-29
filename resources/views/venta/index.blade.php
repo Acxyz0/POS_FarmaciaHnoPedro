@@ -56,7 +56,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        {{-- {{ $item->user->name }} --}}
+                                        {{ $item->user->name }}
                                     </td>
                                     <td>
                                         Q. {{ $item->total }}

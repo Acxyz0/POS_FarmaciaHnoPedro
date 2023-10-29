@@ -9,10 +9,10 @@
     @include('layouts.partials.alert')
 
     <div class="container mx-auto">
-        <div class="col pt-4">
+        <div class="col pt-3">
             <div class="card mb-4">
                 <div class=" mx-auto text-teal-500 font-bold text-3xl">
-                    COMPRAS
+                    EDITAR ROL
                 </div>
                 <div class="card-body">
                     <form action="{{ route('roles.update',['role'=>$role]) }}" method="post">
@@ -32,7 +32,7 @@
                         </div>
         
                         <!---Permisos---->
-                        <div class="col-12">
+                        <div class="grid grid-cols-4 gap-2 pb-2 pt-1">
                             <p class="text-muted">Permisos para el rol:</p>
                             @foreach ($permisos as $item)
                             @if ( in_array($item->id, $role->permissions->pluck('id')->toArray() ) )
@@ -53,11 +53,22 @@
                         @enderror
         
         
-                        <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
-                            <button type="reset" class="btn btn-secondary">Reiniciar</button>
-                        </div>
-        
+                        <div class="text-center space-x-4">
+                            <button type="submit"
+                                class="bg-green-500 hover:bg-green-600 px-3 py-2 rounded-md text-white font-bold">
+                                Guardar
+                            </button>
+                            <a href="{{ route('roles.index') }}">
+                                <button type="button"
+                                    class="bg-red-500 hover:bg-red-700 px-3 py-2 rounded-md text-white font-bold">
+                                    Cancelar
+                                </button>
+                            </a>
+                            <button type="reset"
+                                class="bg-slate-500 hover:bg-slate-600 px-3 py-2 rounded-md text-white font-bold">
+                                Reiniciar
+                            </button>
+                        </div>        
                     </form>
                 </div>
             </div>

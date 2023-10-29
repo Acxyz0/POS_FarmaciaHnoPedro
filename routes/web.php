@@ -30,18 +30,20 @@ Route::middleware('auth')->group(function () {
 });
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-route::resources([
-    'categorias' => categoriaController::class,
-    'marcas' => marcaController::class,
-    'presentaciones' => presentacioneController::class,
-    'proveedores' => proveedoreController::class,
-    'laboratorios' => laboratorioController::class,
-    'productos' => productoController::class,
-    'compras' => compraController::class,
-    'ventas' => ventaController::class,
-    'clientes' => clienteController::class,
-    'users' => userController::class,
-    'roles' => roleController::class
-]);
+Route::middleware('auth')->group(function () {
+    route::resources([
+        'categorias' => categoriaController::class,
+        'marcas' => marcaController::class,
+        'presentaciones' => presentacioneController::class,
+        'proveedores' => proveedoreController::class,
+        'laboratorios' => laboratorioController::class,
+        'productos' => productoController::class,
+        'compras' => compraController::class,
+        'ventas' => ventaController::class,
+        'clientes' => clienteController::class,
+        'users' => userController::class,
+        'roles' => roleController::class
+    ]);
+});

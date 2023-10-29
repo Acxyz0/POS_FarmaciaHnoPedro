@@ -219,7 +219,7 @@
                                                 </div>
 
                                                 <!----User--->
-                                                {{-- <input type="hidden" name="user_id" value="{{ auth()->user()->id }}"> --}}
+                                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
                                                 <!--Botones--->
                                                 <div class="col-12 mt-4 text-center">

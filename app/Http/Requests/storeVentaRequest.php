@@ -27,7 +27,7 @@ class storeVentaRequest extends FormRequest
             'numero_comprobante' => 'required|unique:ventas,numero_comprobante|max:255',
             'total' => 'required|numeric',
             'cliente_id' => 'required|exists:clientes,id',
-            // 'user_id' => 'required|exists:users,id',
+            'user_id' => 'required|exists:users,id',
             'comprobante_id' => 'required|exists:comprobantes,id'
         ];
     }

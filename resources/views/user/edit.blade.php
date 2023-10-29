@@ -12,26 +12,18 @@
         <div class="col pt-4">
             <div class="card mb-4">
                 <div class=" mx-auto text-teal-500 font-bold text-3xl">
-                    COMPRAS
+                    EDITAR USUARIO
                 </div>
                 <div class="card-body">
                     <form action="{{ route('users.update',['user' => $user]) }}" method="post">
                         @method('PATCH')
                         @csrf
-                        <div class="card-header">
-                            <p class="">Nota: Los usuarios son los que pueden ingresar al sistema</p>
-                        </div>
                         <div class="card-body">
                             <!---Nombre---->
                             <div class="row mb-4">
                                 <label for="name" class="col-lg-2 col-form-label">Nombres:</label>
                                 <div class="col-lg-4">
                                     <input type="text" name="name" id="name" class="form-control" value="{{old('name',$user->name)}}">
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-text">
-                                        Escriba un solo nombre
-                                    </div>
                                 </div>
                                 <div class="col-lg-2">
                                     @error('name')
@@ -45,11 +37,6 @@
                                 <label for="email" class="col-lg-2 col-form-label">Email:</label>
                                 <div class="col-lg-4">
                                     <input type="email" name="email" id="email" class="form-control" value="{{old('email',$user->email)}}">
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-text">
-                                        Dirección de correo eléctronico
-                                    </div>
                                 </div>
                                 <div class="col-lg-2">
                                     @error('email')
@@ -98,7 +85,7 @@
                             <div class="row mb-4">
                                 <label for="role" class="col-lg-2 col-form-label">Seleccionar rol:</label>
                                 <div class="col-lg-4">
-                                    <select name="role" id="role" class="form-select">
+                                    <select name="role" id="role" class="form-control">
                                         @foreach ($roles as $item)
                                         @if ( in_array($item->name,$user->roles->pluck('name')->toArray()) )
                                         <option selected value="{{$item->name}}" @selected(old('role')==$item->name)>{{$item->name}}</option>
@@ -108,11 +95,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="form-text">
-                                        Escoja un rol para el usuario.
-                                    </div>
-                                </div>
                                 <div class="col-lg-2">
                                     @error('role')
                                     <small class="text-danger">{{'*'.$message}}</small>
@@ -121,8 +103,17 @@
                             </div>
             
                         </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <div class="text-center space-x-4">
+                            <button type="submit"
+                                class="bg-green-500 hover:bg-green-600 px-3 py-2 rounded-md text-white font-bold">
+                                Guardar
+                            </button>
+                            <a href="{{ route('users.index') }}">
+                                <button type="button"
+                                    class="bg-red-500 hover:bg-red-700 px-3 py-2 rounded-md text-white font-bold">
+                                    Cancelar
+                                </button>
+                            </a>
                         </div>
                     </form>
                 </div>
