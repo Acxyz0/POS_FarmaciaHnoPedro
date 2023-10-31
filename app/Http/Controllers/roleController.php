@@ -10,13 +10,13 @@ use Spatie\Permission\Models\Role;
 
 class roleController extends Controller
 {
-    function __construct()
-    {
-        $this->middleware('permission:ver-role|crear-role|editar-role|eliminar-role', ['only' => ['index']]);
-        $this->middleware('permission:crear-role', ['only' => ['create', 'store']]);
-        $this->middleware('permission:editar-role', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:eliminar-role', ['only' => ['destroy']]);
-    }
+    // function __construct()
+    // {
+    //     $this->middleware('permission:ver-role|crear-role|editar-role|eliminar-role', ['only' => ['index']]);
+    //     $this->middleware('permission:crear-role', ['only' => ['create', 'store']]);
+    //     $this->middleware('permission:editar-role', ['only' => ['edit', 'update']]);
+    //     $this->middleware('permission:eliminar-role', ['only' => ['destroy']]);
+    // }
     /**
      * Display a listing of the resource.
      */
@@ -40,26 +40,38 @@ class roleController extends Controller
      */
     public function store(Request $request)
     {
+
+        // $request->validate([
+        //     'name'=> 'required',
+        //     'permission'=> 'required',
+        // ]);
+
+        // $role = Role::create($request->all());
+
+        // $role->permissions()->sync($request->permissions);
+
+        // return redirect()->route('roles.index')->with('success','Rol registrado correctamente');
+
         $request->validate([
             'name' => 'required|unique:roles,name',
-            'permission' => 'required'
+            'permission' => 'required'  
         ]);
 
         try {
             DB::beginTransaction();
             //Crear rol
-            $rol = Role::create(['name' => $request->name]);
+            // $rol = Role::create(['name' => $request->name]);
+            $rol = Role::create($request->all());
 
             //Asignar permisos
-            $rol->syncPermissions($request->permission);
+            // $rol->syncPermissions($request->permission);
+            $rol->permissions()->sync($request->permissions);
 
             DB::commit();
         } catch (Exception $e) {
             dd($e);
             DB::rollBack();
         }
-
-        // dd($request);
 
         return redirect()->route('roles.index')->with('success', 'Rol registrado');
     }

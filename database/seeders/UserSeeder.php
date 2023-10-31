@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
     {
         $user = User::create([
             'name' => 'Alejandro Trujillo',
-            'email' => 'prueba@gmail.com',
-            'password' => bcrypt('123456')
+            'email' => 'alejtrujillo102@gmail.com',
+            'password' => bcrypt('Alejandro123')
         ]);
 
         //Usuario administrador
@@ -26,6 +26,6 @@ class UserSeeder extends Seeder
         $permisos = Permission::pluck('id','id')->all();
         $rol->syncPermissions($permisos);
         // $user = User::find(1);
-        $user->assignRole('contador');
+        $user->assignRole('administrador');
     }
 }

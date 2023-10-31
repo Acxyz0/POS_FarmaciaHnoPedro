@@ -24,8 +24,8 @@ class proveedoreController extends Controller
      */
     public function index()
     {
-        $proveedores = Proveedore::with('persona.documento')->get();
-        return view('proveedore.index',compact('proveedores'));
+        $proveedores = Proveedore::with('persona.documento')->latest()->get();
+        return view('proveedore.index', ['proveedores' => $proveedores]);
     }
 
     /**
@@ -50,6 +50,7 @@ class proveedoreController extends Controller
             ]);
             DB::commit();
         } catch (Exception $e) {
+            dd($e);
             DB::rollBack();
         }
 
