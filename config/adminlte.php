@@ -365,12 +365,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Nueva Devolución',
-                    'url'  => 'devoluciones',
+                    'url'  => 'devoluciones/create',
                     'icon' => 'fas fa-fw fa-plus',
                 ],
                 [
                     'text' => 'Registro Devoluciones',
-                    'url'  => '#',
+                    'url'  => 'devoluciones',
                     'icon' => 'fas fa-fw fa-list',
                 ],
             ],

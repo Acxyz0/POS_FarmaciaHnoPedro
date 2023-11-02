@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear categoria')
+@section('title', 'Categoria')
 
 @vite('resources/css/app.css')
 

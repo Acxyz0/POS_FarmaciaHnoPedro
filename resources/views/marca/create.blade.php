@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear marca')
+@section('title', 'Marcas')
 
 @vite('resources/css/app.css')
 

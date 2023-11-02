@@ -3,6 +3,7 @@
 use App\Http\Controllers\categoriaController;
 use App\Http\Controllers\clienteController;
 use App\Http\Controllers\compraController;
+use App\Http\Controllers\devolucioneController;
 use App\Http\Controllers\laboratorioController;
 use App\Http\Controllers\marcaController;
 use App\Http\Controllers\presentacioneController;
@@ -44,6 +45,7 @@ Route::middleware('auth')->group(function () {
         'ventas' => ventaController::class,
         'clientes' => clienteController::class,
         'users' => userController::class,
-        'roles' => roleController::class
+        'roles' => roleController::class,
+        'devoluciones' => devolucioneController::class
     ]);
 });

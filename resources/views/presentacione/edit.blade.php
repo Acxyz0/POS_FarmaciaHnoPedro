@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar Presentacion')
+@section('title', 'Presentaciones')
 
 @vite('resources/css/app.css')
 

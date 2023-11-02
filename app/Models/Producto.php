@@ -52,4 +52,9 @@ class Producto extends Model
     {
         return $this->belongsTo(Laboratorio::class);
     }
+
+    public function devoluciones()
+    {
+        return $this->hasMany(Devolucione::class);
+    }
 }
