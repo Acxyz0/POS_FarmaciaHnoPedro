@@ -26,7 +26,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 py-3">
-                        <a href="{{ url('/ventas') }}">
+                        <a href="{{ url('/ventas/create') }}">
                             <div
                                 class="bg-cyan-500 hover:bg-cyan-600 font-bold text-center px-3 py-4 h-32 rounded-xl shadow-md shadow-slate-400">
                                 <div class="card-icon text-white">
@@ -39,7 +39,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 py-3">
-                        <a href="{{ url('/compras') }}">
+                        <a href="{{ url('/compras/create') }}">
                             <div
                                 class="bg-blue-500 hover:bg-blue-600 font-bold text-center px-3 py-4 h-32 rounded-xl shadow-md shadow-slate-400">
                                 <div class="card-icon text-white">
@@ -78,11 +78,11 @@
                         </a>
                     </div>
                     <div class="col-md-3 py-3">
-                        <a href="{{ url('/ajustes') }}">
+                        <a href="{{ url('/users') }}">
                             <div
                                 class="bg-gray-500 hover:bg-gray-600 font-bold text-center px-3 py-4 h-32 rounded-xl shadow-md shadow-slate-400">
                                 <div class="card-icon text-white text-lg">
-                                    <i class="fas fa-wrench fa-2x"></i> Configuración
+                                    <i class="fas fa-users fa-2x"></i> Usuarios
                                 </div>
                                 <div class="card-content w-full text-right">
                                     <span class="fas fa-chevron-right text-white fa-2x"></span>

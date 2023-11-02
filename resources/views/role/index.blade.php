@@ -36,17 +36,15 @@
                                 <td class="grid justify-items-center">
                                     <div class="row text-center space-x-2">
                                         <div>
-                                            <!-----Editar usuarios--->
                                             {{-- @can('editar-user') --}}
-                                            <a href="{{ route('roles.edit', ['role' => $item]) }}">
+                                            <form action="{{route('roles.edit',['role'=>$item])}}" method="get">
                                                 <button type="submit" class="bg-warning py-2 px-3 rounded-md">
                                                     <span class="fas fa-fw fa-pen text-white"></span>
                                                 </button>
-                                            </a>
+                                            </form>
                                             {{-- @endcan --}}
                                         </div>
                                         <div>
-                                            <!------Eliminar user---->
                                             {{-- @can('eliminar-user') --}}
                                             <button title="Eliminar" data-toggle="modal"
                                                 data-target="#confirmModal-{{ $item->id }}"

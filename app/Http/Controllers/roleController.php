@@ -41,31 +41,19 @@ class roleController extends Controller
     public function store(Request $request)
     {
 
-        // $request->validate([
-        //     'name'=> 'required',
-        //     'permission'=> 'required',
-        // ]);
-
-        // $role = Role::create($request->all());
-
-        // $role->permissions()->sync($request->permissions);
-
-        // return redirect()->route('roles.index')->with('success','Rol registrado correctamente');
-
+        
         $request->validate([
             'name' => 'required|unique:roles,name',
-            'permission' => 'required'  
+            'permission' => 'required'
         ]);
 
         try {
             DB::beginTransaction();
             //Crear rol
-            // $rol = Role::create(['name' => $request->name]);
-            $rol = Role::create($request->all());
+            $rol = Role::create(['name' => $request->name]);
 
             //Asignar permisos
-            // $rol->syncPermissions($request->permission);
-            $rol->permissions()->sync($request->permissions);
+            $rol->syncPermissions($request->permission);
 
             DB::commit();
         } catch (Exception $e) {
@@ -99,7 +87,7 @@ class roleController extends Controller
     public function update(Request $request, Role $role)
     {
         $request->validate([
-            'name' => 'required|unique:roles,name,' . $role->id,
+            'name' => 'required|unique:roles,name,' .$role->id,
             'permission' => 'required'
         ]);
 

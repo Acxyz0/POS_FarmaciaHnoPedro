@@ -37,12 +37,12 @@
                             @foreach ($permisos as $item)
                             @if ( in_array($item->id, $role->permissions->pluck('id')->toArray() ) )
                             <div class="form-check mb-2">
-                                <input checked type="checkbox" name="permission[]" id="{{$item->id}}" class="form-check-input" value="{{$item->id}}">
+                                <input checked type="checkbox" name="permission[]" id="{{$item->id}}" class="form-check-input" value="{{$item->name}}">
                                 <label for="{{$item->id}}" class="form-check-label">{{$item->name}}</label>
                             </div>
                             @else
                             <div class="form-check mb-2">
-                                <input type="checkbox" name="permission[]" id="{{$item->id}}" class="form-check-input" value="{{$item->id}}">
+                                <input type="checkbox" name="permission[]" id="{{$item->id}}" class="form-check-input" value="{{$item->name}}">
                                 <label for="{{$item->id}}" class="form-check-label">{{$item->name}}</label>
                             </div>
                             @endif

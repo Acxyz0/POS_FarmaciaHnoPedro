@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Compras')
+@section('title', 'Roles')
 
 @vite('resources/css/app.css')
 
@@ -12,7 +12,7 @@
         <div class="col pt-3">
             <div class="card mb-4">
                 <div class=" mx-auto text-teal-500 font-bold text-3xl">
-                    CREAR USUARIO
+                    CREAR ROL
                 </div>
                 <div class="card-body">
                     <form action="{{ route('roles.store') }}" method="post">
@@ -37,7 +37,7 @@
                             @foreach ($permisos as $item)
                                 <div class="form-check mb-2">
                                     <input type="checkbox" name="permission[]" id="{{ $item->id }}"
-                                        class="form-check-input" value="{{ $item->id }}">
+                                        class="form-check-input" value="{{ $item->name }}">
                                     <label for="{{ $item->id }}" class="form-check-label">{{ $item->name }}</label>
                                 </div>
                             @endforeach

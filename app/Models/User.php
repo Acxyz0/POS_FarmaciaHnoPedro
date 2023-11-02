@@ -39,8 +39,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
     ];
 
     /**
@@ -55,8 +53,4 @@ class User extends Authenticatable
     public function ventas(){
         return $this->hasMany(Venta::class);
     }
-
-    protected $appends = [
-        'profile_photo_url',
-    ];
 }
