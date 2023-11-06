@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\storeVentaRequest;
 use App\Models\Cliente;
-use App\Models\Compra;
 use App\Models\Comprobante;
 use App\Models\Producto;
 use App\Models\Venta;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ventaController extends Controller
 {
@@ -25,6 +25,18 @@ class ventaController extends Controller
         ->get();
 
         return view('venta.index',compact('ventas'));
+    }
+
+    public function pdf()
+    {
+        $ventas = Venta::with(['comprobante','cliente.persona','user'])
+        ->where('estado',1)
+        ->latest()
+        ->get();
+
+       $pdf = PDF::loadview('venta.pdf', ['ventas'=>$ventas]);
+
+        return $pdf->stream();
     }
 
     /**

@@ -320,11 +320,11 @@ return [
                     'url'  => 'movimientos',
                     'icon' => 'fas fa-fw fa-cash-register',
                 ],
-                [
-                    'text' => 'Métodos de pago',
-                    'url'  => 'metodoPago',
-                    'icon' => 'fab fa-fw fa-paypal',
-                ],
+                // [
+                //     'text' => 'Métodos de pago',
+                //     'url'  => 'metodoPago',
+                //     'icon' => 'fab fa-fw fa-paypal',
+                // ],
             ],
         ],
         [

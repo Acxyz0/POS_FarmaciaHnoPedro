@@ -52,7 +52,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 py-3">
-                        <a href="#">
+                        <a href="/devoluciones/create">
                             <div
                                 class="bg-purple-600 hover:bg-purple-700 font-bold text-center px-3 py-4 h-32 rounded-xl shadow-md shadow-slate-400">
                                 <div class="card-icon text-lg text-white">

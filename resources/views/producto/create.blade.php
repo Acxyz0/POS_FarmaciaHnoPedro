@@ -46,7 +46,8 @@
                                     <div class="col-md-6">
                                         <label for="fecha_vencimiento">Fecha de Vencimiento</label>
                                         <input type="date" name="fecha_vencimiento" id="fecha_vencimiento"
-                                            class="w-full form-control" value="{{ old('fecha_vencimiento') }}">
+                                            class="w-full form-control" value="{{ old('fecha_vencimiento') }}"
+                                            min="<?php echo date('Y-m-d'); ?>">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="lote">Lote</label>

@@ -6,13 +6,16 @@ use App\Http\Controllers\compraController;
 use App\Http\Controllers\devolucioneController;
 use App\Http\Controllers\laboratorioController;
 use App\Http\Controllers\marcaController;
+use App\Http\Controllers\movimientosController;
 use App\Http\Controllers\presentacioneController;
 use App\Http\Controllers\productoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\proveedoreController;
 use App\Http\Controllers\roleController;
+use App\Http\Controllers\transaccionesController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\ventaController;
+use App\Models\Venta;
 use Illuminate\Support\Facades\Route;
 
 
@@ -34,6 +37,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
+    route::get('ventas/pdf', [ventaController::class, 'pdf'])->name('ventas.pdf');
     route::resources([
         'categorias' => categoriaController::class,
         'marcas' => marcaController::class,
@@ -46,6 +50,8 @@ Route::middleware('auth')->group(function () {
         'clientes' => clienteController::class,
         'users' => userController::class,
         'roles' => roleController::class,
-        'devoluciones' => devolucioneController::class
+        'devoluciones' => devolucioneController::class,
+        'movimientos' => movimientosController::class,
+        'transacciones' => transaccionesController::class
     ]);
 });
