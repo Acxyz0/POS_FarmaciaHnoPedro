@@ -199,20 +199,21 @@
                                                 {{-- Total --}}
                                                 <div class="col-12">
                                                     <label for="inputTotal2">Total</label>
-                                                    <input type="number" id="inputTotal2" class="form-control">
+                                                    <input type="number" id="inputTotal2" class="form-control" step="0.1" min="0">
                                                 </div>
 
                                                 {{-- Efectivo --}}
                                                 <div class="col-12">
                                                     <label for="inputTotal2">Efectivo</label>
                                                     <input type="number" id="efectivo" class="form-control"
-                                                        oninput="calculate()">
+                                                        name="efectivo" step="0.1" min="0" oninput="calculate()">
                                                 </div>
 
                                                 {{-- Cambio --}}
                                                 <div class="col-12">
                                                     <label for="inputTotal2">Cambio</label>
-                                                    <input type="number" id="cambio" class="form-control">
+                                                    <input type="number" id="cambio" class="form-control"
+                                                        name="cambio" step="0.1" min="0">
                                                 </div>
 
                                                 <!--Impuesto---->
@@ -311,7 +312,7 @@
 
             // Calcula el resultado y lo muestra en input3
             var result = value2 - value1;
-            
+
             document.getElementById("cambio").value = Number(result.toFixed(2));
         }
     </script>

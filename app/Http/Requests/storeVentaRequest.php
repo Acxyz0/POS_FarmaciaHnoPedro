@@ -26,6 +26,8 @@ class storeVentaRequest extends FormRequest
             'impuesto' => 'required',
             'numero_comprobante' => 'required|unique:ventas,numero_comprobante|max:255',
             'total' => 'required|numeric',
+            'efectivo'=> 'numeric',
+            'cambio'=> 'numeric',
             'cliente_id' => 'required|exists:clientes,id',
             'user_id' => 'required|exists:users,id',
             'comprobante_id' => 'required|exists:comprobantes,id'

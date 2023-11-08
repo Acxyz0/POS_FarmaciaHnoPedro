@@ -125,9 +125,9 @@
             <p>
                 Total Pagado: Q. {{ $factura->total }}
                 <br>
-                Efectivo: Q
+                Efectivo: Q. {{ $factura->efectivo }}
                 <br>
-                Cambio: Q
+                Cambio: Q. {{ $factura->cambio }}
             </p>
         </div>
         <div>

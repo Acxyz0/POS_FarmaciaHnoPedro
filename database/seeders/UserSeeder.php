@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -15,9 +16,9 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'name' => 'Usuario',
-            'email' => 'usuario1@gmail.com',
-            'password' => bcrypt('usuario1')
+            'name' => 'Alejandro Trujillo',
+            'email' => 'alejtrujillo102@gmail.com',
+            'password' => bcrypt('Alejandro123')
         ]);
 
         //Usuario administrador
