@@ -18,15 +18,17 @@
                     <div class="card-body">
                         <div class="container mx-auto pb-2">
                             <div class="row">
-                                <div class="col pl-0">
-                                    <a href="{{ route('marcas.create') }}">
-                                        <button
-                                            class="bg-cyan-600 text-white hover:bg-cyan-800 p-2 rounded-md text-md"><span
-                                                class="fas fa-fw fa-plus"></span>
-                                            Añadir nuevo registro
-                                        </button>
-                                    </a>
-                                </div>
+                                @can('crear-marca')
+                                    <div class="col pl-0">
+                                        <a href="{{ route('marcas.create') }}">
+                                            <button
+                                                class="bg-cyan-600 text-white hover:bg-cyan-800 p-2 rounded-md text-md"><span
+                                                    class="fas fa-fw fa-plus"></span>
+                                                Añadir nuevo registro
+                                            </button>
+                                        </a>
+                                    </div>
+                                @endcan
                                 <div class="col-span">
                                     <div class="content-input-search-category input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Buscar" id="myInput"
@@ -66,28 +68,31 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ route('marcas.edit', ['marca' => $marca]) }}">
-                                                    <button type="submit" class="bg-warning py-2 px-3 rounded-md"><span
-                                                            class="fas fa-fw fa-pen text-white"></span></button>
-                                                </a>
-                                                <form action="{{ route('marcas.destroy', ['marca' => $marca->id]) }}"
-                                                    class="d-inline form-eliminar" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
+                                                @can('editar-marca')
+                                                    <a href="{{ route('marcas.edit', ['marca' => $marca]) }}">
+                                                        <button type="submit" class="bg-warning py-2 px-3 rounded-md"><span
+                                                                class="fas fa-fw fa-pen text-white"></span></button>
+                                                    </a>
+                                                @endcan
+                                                @can('eliminar-marca')
+                                                    <form action="{{ route('marcas.destroy', ['marca' => $marca->id]) }}"
+                                                        class="d-inline form-eliminar" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
 
-                                                    @if ($marca->caracteristica->estado == 1)
-                                                        <button type="submit"
-                                                            class="bg-red-600 hover:bg-red-700 py-2 px-3 rounded-md"><span
-                                                                class="fas fa-fw fa-trash text-white"></span>
-                                                        </button>
-                                                    @else
-                                                        <button type="submit"
-                                                            class="bg-slate-500 hover:bg-slate-600 py-2 px-3 rounded-md"><span
-                                                                class="fas fa-fw fa-share text-white"></span>
-                                                        </button>
-                                                    @endif
-
-                                                </form>
+                                                        @if ($marca->caracteristica->estado == 1)
+                                                            <button type="submit"
+                                                                class="bg-red-600 hover:bg-red-700 py-2 px-3 rounded-md"><span
+                                                                    class="fas fa-fw fa-trash text-white"></span>
+                                                            </button>
+                                                        @else
+                                                            <button type="submit"
+                                                                class="bg-slate-500 hover:bg-slate-600 py-2 px-3 rounded-md"><span
+                                                                    class="fas fa-fw fa-share text-white"></span>
+                                                            </button>
+                                                        @endif
+                                                    </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

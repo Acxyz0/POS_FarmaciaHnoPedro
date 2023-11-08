@@ -16,12 +16,14 @@
                 </div>
                 <div class="card-body">
                     <div class="col py-2">
-                        <a href="{{ route('compras.create') }}">
-                            <button class="bg-cyan-600 text-white hover:bg-cyan-700 p-2 rounded-md text-md"><span
-                                    class="fas fa-fw fa-plus"></span>
-                                Nueva Compra
-                            </button>
-                        </a>
+                        @can('crear-compra')
+                            <a href="{{ route('compras.create') }}">
+                                <button class="bg-cyan-600 text-white hover:bg-cyan-700 p-2 rounded-md text-md"><span
+                                        class="fas fa-fw fa-plus"></span>
+                                    Nueva Compra
+                                </button>
+                            </a>
+                        @endcan
                         <a href="{{ route('compras.pdf') }}" target="_blank">
                             <button class="bg-emerald-500 text-white hover:bg-emerald-600 p-2 rounded-md text-md">
                                 <i class="fas fa-file-pdf"></i> Generar Reporte
@@ -67,15 +69,19 @@
                                         </td>
                                         <td>
                                             <div class="text-center">
-                                                <a href="{{ route('compras.show', ['compra' => $item]) }}">
-                                                    <button type="submit" class="bg-success py-2 px-3 rounded-md"><span
-                                                            class="fas fa-fw fa-file text-white"></span></button>
-                                                </a>
-                                                <button type="button" class="bg-danger py-2 px-3 rounded-md"
-                                                    data-toggle="modal"
-                                                    data-target="#confirmModal-{{ $item->id }}"><span
-                                                        class="fas fa-fw fa-trash text-white"></span></button>
-
+                                                @can('mostrar-compra')
+                                                    <a href="{{ route('compras.show', ['compra' => $item]) }}">
+                                                        <button type="submit" class="bg-success py-2 px-3 rounded-md"><span
+                                                                class="fas fa-fw fa-file text-white"></span></button>
+                                                    </a>
+                                                @endcan
+                                                @can('eliminar-compra')
+                                                    <button type="button" class="bg-danger py-2 px-3 rounded-md"
+                                                        data-toggle="modal"
+                                                        data-target="#confirmModal-{{ $item->id }}"><span
+                                                            class="fas fa-fw fa-trash text-white"></span>
+                                                    </button>
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>

@@ -16,12 +16,14 @@
                 </div>
                 <div class="card-body">
                     <div class="col py-2">
-                        <a href="{{ route('ventas.create') }}">
-                            <button class="bg-cyan-600 text-white hover:bg-cyan-700 p-2 rounded-md text-md"><span
-                                    class="fas fa-fw fa-plus"></span>
-                                Nueva Venta
-                            </button>
-                        </a>
+                        @can('crear-venta')
+                            <a href="{{ route('ventas.create') }}">
+                                <button class="bg-cyan-600 text-white hover:bg-cyan-700 p-2 rounded-md text-md"><span
+                                        class="fas fa-fw fa-plus"></span>
+                                    Nueva Venta
+                                </button>
+                            </a>
+                        @endcan
                         <a href="{{ route('ventas.pdf') }}" target="_blank">
                             <button class="bg-emerald-500 text-white hover:bg-emerald-600 p-2 rounded-md text-md">
                                 <i class="fas fa-file-pdf"></i> Generar Reporte
@@ -70,20 +72,24 @@
                                         </td>
                                         <td>
                                             <div class="text-center">
-                                                <a href="{{route('facturas.show',['factura' => $item])}}" target="_blank">
+                                                <a href="{{ route('facturas.show', ['factura' => $item]) }}"
+                                                    target="_blank">
                                                     <button type="submit" class="bg-warning py-2 px-3 rounded-md"><span
                                                             class="fas fa-fw fa-receipt text-white"></span></button>
                                                 </a>
-                                                <a href="{{ route('ventas.show', ['venta' => $item]) }}">
-                                                    <button type="submit" class="bg-success py-2 px-3 rounded-md"><span
-                                                            class="fas fa-fw fa-file text-white"></span></button>
-                                                </a>
-                                                <button type="button" class="bg-danger py-2 px-3 rounded-md"
-                                                    data-toggle="modal"
-                                                    data-target="#confirmModal-{{ $item->id }}"><span
-                                                        class="fas fa-fw fa-trash text-white"></span>
-                                                </button>
-
+                                                @can('mostrar-venta')
+                                                    <a href="{{ route('ventas.show', ['venta' => $item]) }}">
+                                                        <button type="submit" class="bg-success py-2 px-3 rounded-md"><span
+                                                                class="fas fa-fw fa-file text-white"></span></button>
+                                                    </a>
+                                                @endcan
+                                                @can('eliminar-venta')
+                                                    <button type="button" class="bg-danger py-2 px-3 rounded-md"
+                                                        data-toggle="modal"
+                                                        data-target="#confirmModal-{{ $item->id }}"><span
+                                                            class="fas fa-fw fa-trash text-white"></span>
+                                                    </button>
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>

@@ -39,6 +39,12 @@ class PermissionSeeder extends Seeder
             'editar-marca',
             'eliminar-marca',
 
+            //Laboratorio
+            'ver-laboratorio',
+            'crear-laboratorio',
+            'editar-laboratorio',
+            'eliminar-laboratorio',
+
             //Presentacione
             'ver-presentacione',
             'crear-presentacione',

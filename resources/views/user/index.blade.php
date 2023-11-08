@@ -15,11 +15,13 @@
                     USUARIOS
                 </div>
                 <div class="card-body">
+                    @can('crear-user')
                     <div class="mb-4">
                         <a href="{{ route('users.create') }}">
                             <button type="button" class="btn btn-info">Añadir nuevo usuario</button>
                         </a>
                     </div>
+                    @endcan
                     <div id="content-table">
                         <table id="datatablesSimple" class="table table-striped fs-6">
                             <thead class="bg-info">
@@ -42,23 +44,23 @@
                                             <div class="row text-center space-x-2">
                                                 <div>
                                                     <!-----Editar usuarios--->
-                                                    {{-- @can('editar-user') --}}
+                                                    @can('editar-user')
                                                     <a href="{{ route('users.edit', ['user' => $item]) }}">
                                                         <button type="submit" class="bg-warning py-2 px-3 rounded-md">
                                                             <span class="fas fa-fw fa-pen text-white"></span>
                                                         </button>
                                                     </a>
-                                                    {{-- @endcan --}}
+                                                    @endcan
                                                 </div>
                                                 <div>
                                                     <!------Eliminar user---->
-                                                    {{-- @can('eliminar-user') --}}
+                                                    @can('eliminar-user')
                                                     <button title="Eliminar" data-toggle="modal"
                                                         data-target="#confirmModal-{{ $item->id }}"
                                                         class="bg-danger py-2 px-3 rounded-md">
                                                         <span class="fas fa-trash"></span>
                                                     </button>
-                                                    {{-- @endcan --}}
+                                                    @endcan
                                                 </div>
                                             </div>
                                         </td>

@@ -12,7 +12,7 @@
         <div class="col pt-4">
             <div class="card mb-4">
                 <div class=" mx-auto text-teal-500 font-bold text-3xl">
-                    MOVIMIENTOS
+                    MOVIMIENTOS DEL DIA
                 </div>
                 <div class="card-body">
                     <div class="col py-2">

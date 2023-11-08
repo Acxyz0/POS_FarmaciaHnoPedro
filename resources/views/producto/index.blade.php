@@ -17,19 +17,16 @@
                 <div class="card-body">
                     <div class="container mx-auto pb-2">
                         <div class="row">
-                            <div class="col pl-0">
-                                <a href="{{ route('productos.create') }}">
-                                    <button class="bg-cyan-600 text-white hover:bg-cyan-800 p-2 rounded-md text-md"><span
-                                            class="fas fa-fw fa-plus"></span>
-                                        Añadir nuevo registro
-                                    </button>
-                                </a>
-                                <a href="">
-                                    <button class="bg-emerald-500 text-white hover:bg-emerald-600 p-2 rounded-md text-md">
-                                        <i class="fas fa-file-pdf"></i> Generar Reporte
-                                    </button>
-                                </a>
-                            </div>
+                            @can('crear-producto')
+                                <div class="col pl-0">
+                                    <a href="{{ route('productos.create') }}">
+                                        <button class="bg-cyan-600 text-white hover:bg-cyan-800 p-2 rounded-md text-md"><span
+                                                class="fas fa-fw fa-plus"></span>
+                                            Añadir nuevo registro
+                                        </button>
+                                    </a>
+                                </div>
+                            @endcan
                             <div class="col-span">
                                 <div class="content-input-search-category input-group mb-2">
                                     <input type="text" class="form-control" placeholder="Buscar" id="myInput"
@@ -117,28 +114,32 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('productos.edit', ['producto' => $item]) }}">
-                                                <button type="submit" class="bg-warning py-2 px-3 rounded-md"><span
-                                                        class="fas fa-fw fa-pen text-white"></span></button>
-                                            </a>
-                                            <form action="{{ route('productos.destroy', ['producto' => $item->id]) }}"
-                                                class="d-inline" method="POST">
-                                                @method('DELETE')
-                                                @csrf
+                                            @can('editar-producto')
+                                                <a href="{{ route('productos.edit', ['producto' => $item]) }}">
+                                                    <button type="submit" class="bg-warning py-2 px-3 rounded-md"><span
+                                                            class="fas fa-fw fa-pen text-white"></span></button>
+                                                </a>
+                                            @endcan
+                                            @can('eliminar-producto')
+                                                <form action="{{ route('productos.destroy', ['producto' => $item->id]) }}"
+                                                    class="d-inline" method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
 
-                                                @if ($item->estado == 1)
-                                                    <button type="submit"
-                                                        class="bg-red-600 hover:bg-red-700 py-2 px-3 rounded-md"><span
-                                                            class="fas fa-fw fa-trash text-white"></span>
-                                                    </button>
-                                                @else
-                                                    <button type="submit"
-                                                        class="bg-slate-500 hover:bg-slate-600 py-2 px-3 rounded-md"><span
-                                                            class="fas fa-fw fa-share text-white"></span>
-                                                    </button>
-                                                @endif
+                                                    @if ($item->estado == 1)
+                                                        <button type="submit"
+                                                            class="bg-red-600 hover:bg-red-700 py-2 px-3 rounded-md"><span
+                                                                class="fas fa-fw fa-trash text-white"></span>
+                                                        </button>
+                                                    @else
+                                                        <button type="submit"
+                                                            class="bg-slate-500 hover:bg-slate-600 py-2 px-3 rounded-md"><span
+                                                                class="fas fa-fw fa-share text-white"></span>
+                                                        </button>
+                                                    @endif
 
-                                            </form>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

@@ -15,6 +15,14 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ventaController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-venta|crear-venta|mostrar-venta|eliminar-venta', ['only' => ['index']]);
+        $this->middleware('permission:crear-venta', ['only' => ['create', 'store']]);
+        $this->middleware('permission:mostrar-venta', ['only' => ['show']]);
+        $this->middleware('permission:eliminar-venta', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -35,7 +43,7 @@ class ventaController extends Controller
             ->latest()
             ->get();
 
-        
+
         $pdf = PDF::loadview('venta.pdf', ['ventas' => $ventas]);
 
         $pdf->setPaper('letter', 'portrait');
@@ -46,7 +54,7 @@ class ventaController extends Controller
     public function factura()
     {
         $ventas = Venta::all();
-        
+
         $pdf = PDF::loadview('venta.factura', ['ventas' => $ventas]);
 
         $pdf->setPaper('letter', 'portrait');

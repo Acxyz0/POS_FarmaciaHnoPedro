@@ -18,15 +18,17 @@
                     <div class="card-body">
                         <div class="container mx-auto pb-2">
                             <div class="row">
-                                <div class="col pl-0">
-                                    <a href="{{ route('clientes.create') }}">
-                                        <button
-                                            class="bg-cyan-600 text-white hover:bg-cyan-800 p-2 rounded-md text-md"><span
-                                                class="fas fa-fw fa-plus"></span>
-                                            Añadir nuevo registro
-                                        </button>
-                                    </a>
-                                </div>
+                                @can('crear-cliente')
+                                    <div class="col pl-0">
+                                        <a href="{{ route('clientes.create') }}">
+                                            <button
+                                                class="bg-cyan-600 text-white hover:bg-cyan-800 p-2 rounded-md text-md"><span
+                                                    class="fas fa-fw fa-plus"></span>
+                                                Añadir nuevo registro
+                                            </button>
+                                        </a>
+                                    </div>
+                                @endcan
                                 <div class="col-span">
                                     <div class="content-input-search-category input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Buscar" id="myInput"
@@ -80,29 +82,33 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ route('clientes.edit', ['cliente' => $item]) }}">
-                                                    <button type="submit" class="bg-warning py-2 px-3 rounded-md"><span
-                                                            class="fas fa-fw fa-pen text-white"></span></button>
-                                                </a>
-                                                <form
-                                                    action="{{ route('clientes.destroy', ['cliente' => $item->persona->id]) }}"
-                                                    class="d-inline form-eliminar" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
+                                                @can('editar-cliente')
+                                                    <a href="{{ route('clientes.edit', ['cliente' => $item]) }}">
+                                                        <button type="submit" class="bg-warning py-2 px-3 rounded-md"><span
+                                                                class="fas fa-fw fa-pen text-white"></span></button>
+                                                    </a>
+                                                @endcan
+                                                @can('eliminar-cliente')
+                                                    <form
+                                                        action="{{ route('clientes.destroy', ['cliente' => $item->persona->id]) }}"
+                                                        class="d-inline form-eliminar" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
 
-                                                    @if ($item->persona->estado == 1)
-                                                        <button type="submit"
-                                                            class="bg-red-600 hover:bg-red-700 py-2 px-3 rounded-md"><span
-                                                                class="fas fa-fw fa-trash text-white"></span>
-                                                        </button>
-                                                    @else
-                                                        <button type="submit"
-                                                            class="bg-slate-500 hover:bg-slate-600 py-2 px-3 rounded-md"><span
-                                                                class="fas fa-fw fa-share text-white"></span>
-                                                        </button>
-                                                    @endif
+                                                        @if ($item->persona->estado == 1)
+                                                            <button type="submit"
+                                                                class="bg-red-600 hover:bg-red-700 py-2 px-3 rounded-md"><span
+                                                                    class="fas fa-fw fa-trash text-white"></span>
+                                                            </button>
+                                                        @else
+                                                            <button type="submit"
+                                                                class="bg-slate-500 hover:bg-slate-600 py-2 px-3 rounded-md"><span
+                                                                    class="fas fa-fw fa-share text-white"></span>
+                                                            </button>
+                                                        @endif
 
-                                                </form>
+                                                    </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

@@ -23,18 +23,11 @@
                     MOVIMIENTOS
                 </div>
                 <div class="card-body">
-                    {{-- <div class="col py-2">
-                        <a href="{{ route('transaccion.index') }}">
-                            <button class="bg-cyan-600 text-white hover:bg-cyan-700 p-2 rounded-md text-md"><span
-                                    class="fas fa-fw fa-plus"></span>
-                                Nueva Compra
-                            </button>
-                        </a>
-                    </div> --}}
                     <table class="table table-auto">
                         <thead class="bg-info">
                             <tr>
                                 <th>Descripción</th>
+                                <th>Documento</th>
                                 <th>Fecha</th>
                                 <th class="text-center">Venta</th>
                                 <th class="text-center">Compra</th>
@@ -44,6 +37,7 @@
                             @foreach ($movimientos as $movimiento)
                                 <tr>
                                     <td>{{ $movimiento->tipo }} # {{ $movimiento->id }}</td>
+                                    <td>{{$movimiento->numero_comprobante}}</td>
                                     <td>
                                         <i class="fas fa-calendar"></i>
                                         {{ $movimiento->created_at }}
@@ -61,6 +55,7 @@
                                 </tr>
                             @endforeach
                             <tr>
+                                <td></td>
                                 <td></td>
                                 <td class="text-end font-bold">Totales:</td>
                                 <td class="text-center">Q. {{ $totalVentas }}</td>

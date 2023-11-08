@@ -26,7 +26,7 @@ class storeProductoRequest extends FormRequest
             'nombre' => 'required|max:80',
             'descripcion' => 'nullable|max:255',
             'fecha_vencimiento' => 'nullable|date',
-            'lote' => 'required|max:15',
+            'lote' => 'max:15',
             'marca_id' => 'required|integer|exists:marcas,id',
             'laboratorio_id' => 'required|integer|exists:laboratorios,id',
             'presentacione_id' => 'required|integer|exists:presentaciones,id',

@@ -15,11 +15,13 @@
                     ROLES
                 </div>
                 <div class="card-body">
-                    <div class="mb-4">
-                        <a href="{{ route('roles.create') }}">
-                            <button type="button" class="btn btn-info">Añadir nuevo rol</button>
-                        </a>
-                    </div>
+                    @can('crear-role')
+                        <div class="mb-4">
+                            <a href="{{ route('roles.create') }}">
+                                <button type="button" class="btn btn-info">Añadir nuevo rol</button>
+                            </a>
+                        </div>
+                    @endcan
                     <div id="content-table">
                         <table id="datatablesSimple" class="table table-striped fs-6">
                             <thead class="bg-info">
@@ -37,22 +39,23 @@
                                         <td class="grid justify-items-center">
                                             <div class="row text-center space-x-2">
                                                 <div>
-                                                    {{-- @can('editar-user') --}}
-                                                    <form action="{{ route('roles.edit', ['role' => $item]) }}" method="get">
-                                                        <button type="submit" class="bg-warning py-2 px-3 rounded-md">
-                                                            <span class="fas fa-fw fa-pen text-white"></span>
-                                                        </button>
-                                                    </form>
-                                                    {{-- @endcan --}}
+                                                    @can('editar-role')
+                                                        <form action="{{ route('roles.edit', ['role' => $item]) }}"
+                                                            method="get">
+                                                            <button type="submit" class="bg-warning py-2 px-3 rounded-md">
+                                                                <span class="fas fa-fw fa-pen text-white"></span>
+                                                            </button>
+                                                        </form>
+                                                    @endcan
                                                 </div>
                                                 <div>
-                                                    {{-- @can('eliminar-user') --}}
-                                                    <button title="Eliminar" data-toggle="modal"
-                                                        data-target="#confirmModal-{{ $item->id }}"
-                                                        class="bg-danger py-2 px-3 rounded-md">
-                                                        <span class="fas fa-trash"></span>
-                                                    </button>
-                                                    {{-- @endcan --}}
+                                                    @can('eliminar-role')
+                                                        <button title="Eliminar" data-toggle="modal"
+                                                            data-target="#confirmModal-{{ $item->id }}"
+                                                            class="bg-danger py-2 px-3 rounded-md">
+                                                            <span class="fas fa-trash"></span>
+                                                        </button>
+                                                    @endcan
                                                 </div>
                                             </div>
                                         </td>
