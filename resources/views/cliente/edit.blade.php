@@ -39,7 +39,7 @@
                         </div>
     
                         <!--------------Documento------->
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="documento_id" class="form-label">Tipo de documento:</label>
                             <select class="form-control" name="documento_id" id="documento_id">
                                 @foreach ($documentos as $item)
@@ -55,10 +55,18 @@
                             @enderror
                         </div>
     
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="numero_documento" class="form-label">Numero de documento:</label>
                             <input required type="text" name="numero_documento" id="numero_documento" class="form-control" value="{{old('numero_documento',$cliente->persona->numero_documento)}}">
                             @error('numero_documento')
+                            <small class="text-danger">{{'*'.$message}}</small>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="nit" class="form-label">NIT:</label>
+                            <input required type="text" name="nit" id="nit" class="form-control" value="{{old('nit',$cliente->persona->nit)}}">
+                            @error('nit')
                             <small class="text-danger">{{'*'.$message}}</small>
                             @enderror
                         </div>

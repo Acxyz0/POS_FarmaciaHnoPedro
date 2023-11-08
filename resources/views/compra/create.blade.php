@@ -22,7 +22,7 @@
                             </a>
                         </div>
                         <div class="mx-auto text-teal-500 text-center font-bold text-3xl">
-                            NUEVA COMPRA
+                            GENERAR COMPRA
                         </div>
                     </div>
                     <div class="cardbody">
@@ -42,7 +42,7 @@
                                                 <div class="col-12 mb-4">
                                                     <select name="producto_id" id="producto_id" class="form-control selectpicker" data-live-search="true" data-size="1" title="Busque un producto aquí">
                                                         @foreach ($productos as $item)
-                                                        <option value="{{$item->id}}">{{$item->codigo.' - '.$item->nombre}}</option>
+                                                        <option value="{{$item->id}}">{{$item->codigo.' '.$item->nombre}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -50,19 +50,19 @@
                                                 <!-----Cantidad---->
                                                 <div class="col-sm-4 mb-2">
                                                     <label for="cantidad" class="form-label">Cantidad:</label>
-                                                    <input type="number" name="cantidad" id="cantidad" class="form-control">
+                                                    <input type="number" name="cantidad" id="cantidad" class="form-control" min="0">
                                                 </div>
                         
                                                 <!-----Precio de compra---->
                                                 <div class="col-sm-4 mb-2">
                                                     <label for="precio_compra" class="form-label">Precio de compra:</label>
-                                                    <input type="number" name="precio_compra" id="precio_compra" class="form-control" step="0.1">
+                                                    <input type="number" name="precio_compra" id="precio_compra" class="form-control" step="0.1" min="0">
                                                 </div>
                         
                                                 <!-----Precio de venta---->
                                                 <div class="col-sm-4 mb-2">
                                                     <label for="precio_venta" class="form-label">Precio de venta:</label>
-                                                    <input type="number" name="precio_venta" id="precio_venta" class="form-control" step="0.1">
+                                                    <input type="number" name="precio_venta" id="precio_venta" class="form-control" step="0.1" min="0">
                                                 </div>
                         
                                                 <!-----botón para agregar--->
@@ -104,8 +104,8 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <th></th>
-                                                                    <th colspan="4">IGV %</th>
-                                                                    <th colspan="2"><span id="igv">0</span></th>
+                                                                    <th colspan="4">IVA %</th>
+                                                                    <th colspan="2"><span id="iva">0</span></th>
                                                                 </tr>
                                                                 <tr>
                                                                     <th></th>
@@ -140,7 +140,7 @@
                                                     <label for="proveedore_id" class="form-label">Proveedor:</label>
                                                     <select name="proveedore_id" id="proveedore_id" class="form-control selectpicker show-tick" data-live-search="true" title="Selecciona" data-size='2'>
                                                         @foreach ($proveedores as $item)
-                                                        <option value="{{$item->id}}">{{$item->persona->razon_social}}</option>
+                                                        <option value="{{$item->id}}">{{$item->persona->nit.' '.$item->persona->razon_social}}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('proveedore_id')
@@ -172,7 +172,7 @@
                         
                                                 <!--Impuesto---->
                                                 <div class="col-sm-6 mb-2">
-                                                    <label for="impuesto" class="form-label">Impuesto(IGV):</label>
+                                                    <label for="impuesto" class="form-label">Impuesto(IVA):</label>
                                                     <input readonly type="text" name="impuesto" id="impuesto" class="form-control border-info">
                                                     @error('impuesto')
                                                     <small class="text-danger">{{ '*'.$message }}</small>
@@ -269,11 +269,11 @@
         let cont = 0;
         let subtotal = [];
         let sumas = 0;
-        let igv = 0;
+        let iva = 0;
         let total = 0;
     
         //Constantes
-        const impuesto = 18;
+        const impuesto = 12;
     
         function cancelarCompra() {
             //Elimar el tbody de la tabla
@@ -295,12 +295,12 @@
             cont = 0;
             subtotal = [];
             sumas = 0;
-            igv = 0;
+            iva = 0;
             total = 0;
     
             //Mostrar los campos calculados
             $('#sumas').html(sumas);
-            $('#igv').html(igv);
+            $('#iva').html(iva);
             $('#total').html(total);
             $('#impuesto').val(impuesto + '%');
             $('#inputTotal').val(total);
@@ -341,8 +341,8 @@
                         //Calcular valores
                         subtotal[cont] = round(cantidad * precioCompra);
                         sumas += subtotal[cont];
-                        igv = round(sumas / 100 * impuesto);
-                        total = round(sumas + igv);
+                        iva = round(sumas / 100 * impuesto);
+                        total = round(sumas + iva);
     
                         //Crear la fila
                         let fila = '<tr id="fila' + cont + '">' +
@@ -363,9 +363,9 @@
     
                         //Mostrar los campos calculados
                         $('#sumas').html(sumas);
-                        $('#igv').html(igv);
+                        $('#iva').html(iva);
                         $('#total').html(total);
-                        $('#impuesto').val(igv);
+                        $('#impuesto').val(iva);
                         $('#inputTotal').val(total);
                     } else {
                         showModal('Precio de compra incorrecto');
@@ -386,14 +386,14 @@
         function eliminarProducto(indice) {
             //Calcular valores
             sumas -= round(subtotal[indice]);
-            igv = round(sumas / 100 * impuesto);
-            total = round(sumas + igv);
+            iva = round(sumas / 100 * impuesto);
+            total = round(sumas + iva);
     
             //Mostrar los campos calculados
             $('#sumas').html(sumas);
-            $('#igv').html(igv);
+            $('#iva').html(iva);
             $('#total').html(total);
-            $('#impuesto').val(igv);
+            $('#impuesto').val(iva);
             $('#InputTotal').val(total);
     
             //Eliminar el fila de la tabla

@@ -4,6 +4,7 @@ use App\Http\Controllers\categoriaController;
 use App\Http\Controllers\clienteController;
 use App\Http\Controllers\compraController;
 use App\Http\Controllers\devolucioneController;
+use App\Http\Controllers\facturaController;
 use App\Http\Controllers\laboratorioController;
 use App\Http\Controllers\marcaController;
 use App\Http\Controllers\movimientosController;
@@ -38,6 +39,8 @@ require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
     route::get('ventas/pdf', [ventaController::class, 'pdf'])->name('ventas.pdf');
+    Route::get('ventas/factura', [ventaController::class, 'factura'])->name('ventas.factura');
+    route::get('compras/pdf', [compraController::class, 'pdf'])->name('compras.pdf');
     route::resources([
         'categorias' => categoriaController::class,
         'marcas' => marcaController::class,
@@ -52,6 +55,7 @@ Route::middleware('auth')->group(function () {
         'roles' => roleController::class,
         'devoluciones' => devolucioneController::class,
         'movimientos' => movimientosController::class,
-        'transacciones' => transaccionesController::class
+        'transacciones' => transaccionesController::class,
+        'facturas' => facturaController::class
     ]);
 });

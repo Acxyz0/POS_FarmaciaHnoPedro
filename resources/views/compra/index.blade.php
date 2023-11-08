@@ -22,7 +22,7 @@
                                 Nueva Compra
                             </button>
                         </a>
-                        <a href="">
+                        <a href="{{ route('compras.pdf') }}" target="_blank">
                             <button class="bg-emerald-500 text-white hover:bg-emerald-600 p-2 rounded-md text-md">
                                 <i class="fas fa-file-pdf"></i> Generar Reporte
                             </button>
@@ -47,7 +47,8 @@
                                             <p class="text-muted mb-0">{{ $item->numero_comprobante }}</p>
                                         </td>
                                         <td>
-                                            <p class="fw-semibold mb-1">{{ ucfirst($item->proveedore->persona->tipo_persona) }}
+                                            <p class="fw-semibold mb-1">
+                                                {{ ucfirst($item->proveedore->persona->tipo_persona) }}
                                             </p>
                                             <p class="text-muted mb-0">{{ $item->proveedore->persona->razon_social }}</p>
                                         </td>
@@ -71,9 +72,10 @@
                                                             class="fas fa-fw fa-file text-white"></span></button>
                                                 </a>
                                                 <button type="button" class="bg-danger py-2 px-3 rounded-md"
-                                                    data-toggle="modal" data-target="#confirmModal-{{ $item->id }}"><span
+                                                    data-toggle="modal"
+                                                    data-target="#confirmModal-{{ $item->id }}"><span
                                                         class="fas fa-fw fa-trash text-white"></span></button>
-    
+
                                             </div>
                                         </td>
                                     </tr>
@@ -83,7 +85,8 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje de confirmación
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje de
+                                                        confirmación
                                                     </h1>
                                                     <button type="button" class="btn-close" data-dismiss="modal"
                                                         aria-label="Close"></button>

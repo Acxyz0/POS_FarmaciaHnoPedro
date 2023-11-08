@@ -51,27 +51,26 @@
 
 <body>
     <div class="titulo">
-        <h1>Reporte de Ventas</h1>
+        <h1>Reporte de Compras</h1>
     </div>
     <br>
     <table class="tabla">
         <thead class="">
             <tr>
                 <th>Comprobante</th>
-                <th>Cliente</th>
+                <th>Proveedor</th>
                 <th>Fecha y hora</th>
-                <th>Vendedor</th>
                 <th>Total</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($ventas as $item)
+            @foreach ($compras as $item)
                 <tr>
                     <td>
                         <p class="fw-semibold mb-1">{{ $item->comprobante->tipo_comprobante }} {{ $item->numero_comprobante }}</p>
                     </td>
                     <td>
-                        <p class="text-muted mb-0">{{ $item->cliente->persona->razon_social }}</p>
+                        <p class="text-muted mb-0">{{ $item->proveedore->persona->razon_social }}</p>
                     </td>
                     <td>
                         <div class="row-not-space">
@@ -82,21 +81,17 @@
                         </div>
                     </td>
                     <td>
-                        {{ $item->user->name }}
-                    </td>
-                    <td>
                         Q. {{ $item->total }}
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
-                    <td></td>
                     <td>
                         Total:
                     </td>
                     <td>
-                        Q. {{ $ventas->sum('total') }}
+                        Q. {{ $compras->sum('total') }}
                     </td>
                 </tr>
             @endforeach

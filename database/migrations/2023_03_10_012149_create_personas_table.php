@@ -21,6 +21,7 @@ return new class extends Migration
             $table->tinyInteger('estado')->default(1);
             $table->foreignId('documento_id')->constrained('documentos')->onDelete('cascade');
             $table->string('numero_documento',20)->unique();
+            $table->string('nit',10)->unique();
             $table->timestamps();
         });
     }

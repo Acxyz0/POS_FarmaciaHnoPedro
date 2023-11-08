@@ -7,6 +7,7 @@ use App\Models\Cliente;
 use App\Models\Comprobante;
 use App\Models\Producto;
 use App\Models\Venta;
+use Dompdf\Dompdf;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,22 +20,36 @@ class ventaController extends Controller
      */
     public function index()
     {
-        $ventas = Venta::with(['comprobante','cliente.persona','user'])
-        ->where('estado',1)
-        ->latest()
-        ->get();
+        $ventas = Venta::with(['comprobante', 'cliente.persona', 'user'])
+            ->where('estado', 1)
+            ->latest()
+            ->get();
 
-        return view('venta.index',compact('ventas'));
+        return view('venta.index', compact('ventas'));
     }
 
     public function pdf()
     {
-        $ventas = Venta::with(['comprobante','cliente.persona','user'])
-        ->where('estado',1)
-        ->latest()
-        ->get();
+        $ventas = Venta::with(['comprobante', 'cliente.persona', 'user'])
+            ->where('estado', 1)
+            ->latest()
+            ->get();
 
-       $pdf = PDF::loadview('venta.pdf', ['ventas'=>$ventas]);
+        
+        $pdf = PDF::loadview('venta.pdf', ['ventas' => $ventas]);
+
+        $pdf->setPaper('letter', 'portrait');
+
+        return $pdf->stream();
+    }
+
+    public function factura()
+    {
+        $ventas = Venta::all();
+        
+        $pdf = PDF::loadview('venta.factura', ['ventas' => $ventas]);
+
+        $pdf->setPaper('letter', 'portrait');
 
         return $pdf->stream();
     }
@@ -44,8 +59,18 @@ class ventaController extends Controller
      */
     public function create()
     {
+
+        $venta = Venta::orderBy('id', 'desc')->first();
+        $ventaId = $venta ? $venta->id : 0;
+
+        // Sumamos 1 al valor de $compraId
+        $ventaId++;
+
+        // Rellenamos con ceros hasta tener una cadena de 8 caracteres
+        $ventaId = str_pad($ventaId, 8, '0', STR_PAD_LEFT);
+
         $subquery = DB::table('compra_producto')
-            ->select('producto_id', DB::raw('MAX(created_at) as max_created_at'))
+            ->select('producto_id', DB::raw('MIN(created_at) as max_created_at'))
             ->groupBy('producto_id');
 
         $productos = Producto::join('compra_producto as cpr', function ($join) use ($subquery) {
@@ -66,7 +91,7 @@ class ventaController extends Controller
         })->get();
         $comprobantes = Comprobante::all();
 
-        return view('venta.create', compact('productos', 'clientes', 'comprobantes'));
+        return view('venta.create', compact('productos', 'clientes', 'comprobantes', 'ventaId'));
     }
 
     /**
@@ -74,7 +99,7 @@ class ventaController extends Controller
      */
     public function store(storeVentaRequest $request)
     {
-        try{
+        try {
             DB::beginTransaction();
 
             //Llenar mi tabla venta
@@ -91,7 +116,7 @@ class ventaController extends Controller
             $siseArray = count($arrayProducto_id);
             $cont = 0;
 
-            while($cont < $siseArray){
+            while ($cont < $siseArray) {
                 $venta->productos()->syncWithoutDetaching([
                     $arrayProducto_id[$cont] => [
                         'cantidad' => $arrayCantidad[$cont],
@@ -106,20 +131,20 @@ class ventaController extends Controller
                 $cantidad = intval($arrayCantidad[$cont]);
 
                 DB::table('productos')
-                ->where('id',$producto->id)
-                ->update([
-                    'stock' => $stockActual - $cantidad
-                ]);
+                    ->where('id', $producto->id)
+                    ->update([
+                        'stock' => $stockActual - $cantidad
+                    ]);
 
                 $cont++;
             }
 
             DB::commit();
-        }catch(Exception $e){
+        } catch (Exception $e) {
             DB::rollBack();
         }
 
-        return redirect()->route('ventas.index')->with('success','Venta exitosa');
+        return redirect()->route('ventas.index')->with('success', 'Venta exitosa');
     }
 
     /**
@@ -127,7 +152,7 @@ class ventaController extends Controller
      */
     public function show(Venta $venta)
     {
-        return view('venta.show',compact('venta'));
+        return view('venta.show', compact('venta'));
     }
 
     /**
@@ -151,11 +176,11 @@ class ventaController extends Controller
      */
     public function destroy(string $id)
     {
-        Venta::where('id',$id)
-        ->update([
-            'estado' => 0
-        ]);
+        Venta::where('id', $id)
+            ->update([
+                'estado' => 0
+            ]);
 
-        return redirect()->route('ventas.index')->with('success','Venta eliminada');
+        return redirect()->route('ventas.index')->with('success', 'Venta eliminada');
     }
 }

@@ -37,7 +37,7 @@
                 <div class="p-2">
                     @auth
                         <a href="{{ url('/dashboard') }}"
-                            class="bg-teal-400 text-white border-teal-600 border-4 py-2 px-4 hover:rounded-md hover:bg-emerald-400 text-md w-24">Dashboard</a>
+                            class="bg-teal-400 text-white border-teal-600 border-4 py-2 px-4 hover:rounded-md hover:bg-emerald-400 text-md w-24">Inicio</a>
                     @else
                         <a href="{{ route('login') }}"
                             class="bg-teal-400 text-white border-teal-600 border-4 py-2 px-4 hover:rounded-md hover:bg-emerald-400 text-md w-24">Log

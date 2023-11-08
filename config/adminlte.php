@@ -359,27 +359,27 @@ return [
                 ],
             ],
         ],
-        [
-            'text'    => 'Módulo de Devoluciones',
-            'icon'    => 'fas fa-fw fa-recycle',
-            'submenu' => [
-                [
-                    'text' => 'Nueva Devolución',
-                    'url'  => 'devoluciones/create',
-                    'icon' => 'fas fa-fw fa-plus',
-                ],
-                [
-                    'text' => 'Registro Devoluciones',
-                    'url'  => 'devoluciones',
-                    'icon' => 'fas fa-fw fa-list',
-                ],
-            ],
-        ],
-        [
-            'text' => 'Créditos',
-            'url' => '#',
-            'icon' => 'fas fa-fw fa-credit-card',
-        ],
+        // [
+        //     'text'    => 'Módulo de Devoluciones',
+        //     'icon'    => 'fas fa-fw fa-recycle',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Nueva Devolución',
+        //             'url'  => 'devoluciones/create',
+        //             'icon' => 'fas fa-fw fa-plus',
+        //         ],
+        //         [
+        //             'text' => 'Registro Devoluciones',
+        //             'url'  => 'devoluciones',
+        //             'icon' => 'fas fa-fw fa-list',
+        //         ],
+        //     ],
+        // ],
+        // [
+        //     'text' => 'Créditos',
+        //     'url' => '#',
+        //     'icon' => 'fas fa-fw fa-credit-card',
+        // ],
         [
             'text'    => 'Control de Productos',
             'icon'    => 'fas fa-fw fa-boxes',

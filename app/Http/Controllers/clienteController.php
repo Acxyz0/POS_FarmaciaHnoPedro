@@ -8,7 +8,6 @@ use App\Models\Cliente;
 use App\Models\Documento;
 use App\Models\Persona;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class clienteController extends Controller
@@ -51,6 +50,7 @@ class clienteController extends Controller
             ]);
             DB::commit();
         } catch (Exception $e) {
+            dd($e);
             DB::rollBack();
         }
 

@@ -118,8 +118,8 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <th></th>
-                                                                    <th colspan="4">IGV %</th>
-                                                                    <th colspan="2"><span id="igv">0</span></th>
+                                                                    <th colspan="4">IVA %</th>
+                                                                    <th colspan="2"><span id="iva">0</span></th>
                                                                 </tr>
                                                                 <tr>
                                                                     <th></th>
@@ -157,10 +157,11 @@
                                                     <label for="cliente_id" class="form-label">Cliente:</label>
                                                     <select name="cliente_id" id="cliente_id"
                                                         class="form-control selectpicker show-tick"
-                                                        data-live-search="true" title="Selecciona" data-size='2'>
+                                                        data-live-search="true" title="Selecciona" data-size='5'>
                                                         @foreach ($clientes as $item)
                                                             <option value="{{ $item->id }}">
-                                                                {{ $item->persona->razon_social }}</option>
+                                                                {{ $item->persona->nit . ' - ' . $item->persona->razon_social }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                     @error('cliente_id')
@@ -188,15 +189,35 @@
                                                     <label for="numero_comprobante" class="form-label">Numero de
                                                         comprobante:</label>
                                                     <input required type="text" name="numero_comprobante"
-                                                        id="numero_comprobante" class="form-control">
+                                                        id="numero_comprobante" class="form-control"
+                                                        value="{{ $ventaId }}">
                                                     @error('numero_comprobante')
                                                         <small class="text-danger">{{ '*' . $message }}</small>
                                                     @enderror
                                                 </div>
 
+                                                {{-- Total --}}
+                                                <div class="col-12">
+                                                    <label for="inputTotal2">Total</label>
+                                                    <input type="number" id="inputTotal2" class="form-control">
+                                                </div>
+
+                                                {{-- Efectivo --}}
+                                                <div class="col-12">
+                                                    <label for="inputTotal2">Efectivo</label>
+                                                    <input type="number" id="efectivo" class="form-control"
+                                                        oninput="calculate()">
+                                                </div>
+
+                                                {{-- Cambio --}}
+                                                <div class="col-12">
+                                                    <label for="inputTotal2">Cambio</label>
+                                                    <input type="number" id="cambio" class="form-control">
+                                                </div>
+
                                                 <!--Impuesto---->
                                                 <div class="col-sm-6">
-                                                    <label for="impuesto" class="form-label">Impuesto(IGV):</label>
+                                                    <label for="impuesto" class="form-label">Impuesto(IVA):</label>
                                                     <input readonly type="text" name="impuesto" id="impuesto"
                                                         class="form-control border-success">
                                                     @error('impuesto')
@@ -278,6 +299,41 @@
 @endpush
 
 @push('js')
+    <script>
+        function calculate() {
+            var value1 = parseFloat(document.getElementById("inputTotal2").value);
+            var value2 = parseFloat(document.getElementById("efectivo").value);
+
+            if (isNaN(value1) || isNaN(value2)) {
+                // Si alguno de los valores no es un número, no hace nada
+                return;
+            }
+
+            // Calcula el resultado y lo muestra en input3
+            var result = value2 - value1;
+            
+            document.getElementById("cambio").value = Number(result.toFixed(2));
+        }
+    </script>
+    <script>
+        var lastValue = ""; // Almacena el último valor conocido
+
+        function checkForChanges() {
+            var total = document.getElementById("total").innerHTML;
+
+            if (total !== lastValue) {
+                // Si el valor ha cambiado, lo copia y actualiza lastValue
+                document.getElementById("inputTotal2").value = total;
+                lastValue = total;
+            }
+
+            // Revisa nuevamente después de 500 milisegundos
+            setTimeout(checkForChanges, 500);
+        }
+
+        // Comienza a revisar cambios
+        checkForChanges();
+    </script>
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -307,11 +363,11 @@
         let cont = 0;
         let subtotal = [];
         let sumas = 0;
-        let igv = 0;
+        let iva = 0;
         let total = 0;
 
         //Constantes
-        const impuesto = 18;
+        const impuesto = 12;
 
         function mostrarValores() {
             let dataProducto = document.getElementById('producto_id').value.split('-');
@@ -345,8 +401,8 @@
                         //Calcular valores
                         subtotal[cont] = round(cantidad * precioVenta - descuento);
                         sumas += subtotal[cont];
-                        igv = round(sumas / 100 * impuesto);
-                        total = round(sumas + igv);
+                        iva = round(sumas / 100 * impuesto);
+                        total = round(sumas + iva);
 
                         //Crear la fila
                         let fila = '<tr id="fila' + cont + '">' +
@@ -372,9 +428,9 @@
 
                         //Mostrar los campos calculados
                         $('#sumas').html(sumas);
-                        $('#igv').html(igv);
+                        $('#iva').html(iva);
                         $('#total').html(total);
-                        $('#impuesto').val(igv);
+                        $('#impuesto').val(iva);
                         $('#inputTotal').val(total);
                     } else {
                         showModal('Cantidad incorrecta');
@@ -393,14 +449,14 @@
         function eliminarProducto(indice) {
             //Calcular valores
             sumas -= round(subtotal[indice]);
-            igv = round(sumas / 100 * impuesto);
-            total = round(sumas + igv);
+            iva = round(sumas / 100 * impuesto);
+            total = round(sumas + iva);
 
             //Mostrar los campos calculados
             $('#sumas').html(sumas);
-            $('#igv').html(igv);
+            $('#iva').html(iva);
             $('#total').html(total);
-            $('#impuesto').val(igv);
+            $('#impuesto').val(iva);
             $('#InputTotal').val(total);
 
             //Eliminar el fila de la tabla
@@ -429,12 +485,12 @@
             cont = 0;
             subtotal = [];
             sumas = 0;
-            igv = 0;
+            iva = 0;
             total = 0;
 
             //Mostrar los campos calculados
             $('#sumas').html(sumas);
-            $('#igv').html(igv);
+            $('#iva').html(iva);
             $('#total').html(total);
             $('#impuesto').val(impuesto + '%');
             $('#inputTotal').val(total);

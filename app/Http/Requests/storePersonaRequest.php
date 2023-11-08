@@ -26,7 +26,8 @@ class StorePersonaRequest extends FormRequest
             'direccion' => 'required|max:80',
             'tipo_persona' => 'required|string',
             'documento_id' => 'required|integer',
-            'numero_documento' => 'required|max:20|unique:personas,numero_documento'
+            'numero_documento' => 'required|max:20|unique:personas,numero_documento',
+            'nit'=> 'required|max:10|unique:personas,nit'
         ];
     }
 }

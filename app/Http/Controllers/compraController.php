@@ -10,6 +10,7 @@ use App\Models\Proveedore;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class compraController extends Controller
 {
@@ -18,12 +19,27 @@ class compraController extends Controller
      */
     public function index()
     {
-        $compras = Compra::with('comprobante','proveedore.persona')
-        ->where('estado',1)
-        ->latest()
-        ->get(); 
+        $compras = Compra::with('comprobante', 'proveedore.persona')
+            ->where('estado', 1)
+            ->latest()
+            ->get();
 
         return view("compra.index", compact("compras"));
+    }
+
+    public function pdf()
+    {
+        $compras = Compra::with('comprobante', 'proveedore.persona')
+            ->where('estado', 1)
+            ->latest()
+            ->get();
+
+
+        $pdf = PDF::loadview('compra.pdf', ['compras' => $compras]);
+
+        $pdf->setPaper('letter', 'portrait');
+
+        return $pdf->stream();
     }
 
     /**
@@ -31,12 +47,12 @@ class compraController extends Controller
      */
     public function create()
     {
-        $proveedores = Proveedore::whereHas('persona',function($query){
-            $query->where('estado',1);
+        $proveedores = Proveedore::whereHas('persona', function ($query) {
+            $query->where('estado', 1);
         })->get();
         $comprobantes = Comprobante::all();
-        $productos = Producto::where('estado',1)->get();
-        return view('compra.create',compact('proveedores','comprobantes','productos'));
+        $productos = Producto::where('estado', 1)->get();
+        return view('compra.create', compact('proveedores', 'comprobantes', 'productos'));
     }
 
     /**
@@ -44,7 +60,7 @@ class compraController extends Controller
      */
     public function store(storeCompraRequest $request)
     {
-        try{
+        try {
             DB::beginTransaction();
 
             //Llenar tabla compras
@@ -60,7 +76,7 @@ class compraController extends Controller
             //2.Realizar el llenado
             $siseArray = count($arrayProducto_id);
             $cont = 0;
-            while($cont < $siseArray){
+            while ($cont < $siseArray) {
                 $compra->productos()->syncWithoutDetaching([
                     $arrayProducto_id[$cont] => [
                         'cantidad' => $arrayCantidad[$cont],
@@ -75,21 +91,20 @@ class compraController extends Controller
                 $stockNuevo = intval($arrayCantidad[$cont]);
 
                 DB::table('productos')
-                ->where('id',$producto->id)
-                ->update([
-                    'stock' => $stockActual + $stockNuevo
-                ]);
+                    ->where('id', $producto->id)
+                    ->update([
+                        'stock' => $stockActual + $stockNuevo
+                    ]);
 
                 $cont++;
-
             }
 
             DB::commit();
-        }catch(Exception $e){
+        } catch (Exception $e) {
             DB::rollBack();
         }
 
-        return redirect()->route('compras.index')->with('success','compra exitosa');
+        return redirect()->route('compras.index')->with('success', 'compra exitosa');
     }
 
     /**
@@ -97,7 +112,7 @@ class compraController extends Controller
      */
     public function show(Compra $compra)
     {
-        return view('compra.show',compact('compra'));
+        return view('compra.show', compact('compra'));
     }
 
     /**
@@ -121,11 +136,11 @@ class compraController extends Controller
      */
     public function destroy(string $id)
     {
-        Compra::where('id',$id)
-        ->update([
-            'estado' => 0
-        ]);
+        Compra::where('id', $id)
+            ->update([
+                'estado' => 0
+            ]);
 
-        return redirect()->route('compras.index')->with('success','Compra eliminada');
+        return redirect()->route('compras.index')->with('success', 'Compra eliminada');
     }
 }
