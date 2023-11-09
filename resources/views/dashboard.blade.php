@@ -12,7 +12,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-3 py-3">
+                    <div class="col-md-4 py-3">
                         <a href="{{ url('/movimientos') }}">
                             <div
                                 class="bg-yellow-400 hover:bg-yellow-500 font-bold text-center px-3 py-4 h-32 rounded-xl shadow-md shadow-slate-400">
@@ -25,7 +25,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 py-3">
+                    <div class="col-md-4 py-3">
                         <a href="{{ url('/ventas/create') }}">
                             <div
                                 class="bg-cyan-500 hover:bg-cyan-600 font-bold text-center px-3 py-4 h-32 rounded-xl shadow-md shadow-slate-400">
@@ -38,7 +38,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 py-3">
+                    <div class="col-md-4 py-3">
                         <a href="{{ url('/compras/create') }}">
                             <div
                                 class="bg-blue-500 hover:bg-blue-600 font-bold text-center px-3 py-4 h-32 rounded-xl shadow-md shadow-slate-400">
@@ -51,20 +51,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 py-3">
-                        <a href="/devoluciones/create">
-                            <div
-                                class="bg-purple-600 hover:bg-purple-700 font-bold text-center px-3 py-4 h-32 rounded-xl shadow-md shadow-slate-400">
-                                <div class="card-icon text-lg text-white">
-                                    <i class="fas fa-reply fa-2x"></i> Devoluciones
-                                </div>
-                                <div class="card-content w-full text-right">
-                                    <span class="fas fa-chevron-right text-white fa-2x"></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 py-3">
+                    <div class="col-md-4 py-3">
                         <a href="/productos">
                             <div
                                 class="bg-red-500 hover:bg-red-600 font-bold text-center px-3 py-4 h-32 rounded-xl shadow-md shadow-slate-400">
@@ -77,7 +64,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 py-3">
+                    <div class="col-md-4 py-3">
                         <a href="{{ url('/users') }}">
                             <div
                                 class="bg-gray-500 hover:bg-gray-600 font-bold text-center px-3 py-4 h-32 rounded-xl shadow-md shadow-slate-400">
