@@ -105,4 +105,5 @@
 @stop
 
 @section('js')
+    <script src="https://cdn.tailwindcss.com"></script>
 @stop
