@@ -312,52 +312,29 @@ return [
             'icon' => 'fas fa-fw fa-home',
         ],        
         [
-            'text'    => 'Caja',
-            'icon'    => 'fas fa-fw fa-inbox',
-            'submenu' => [                
-                [
-                    'text' => 'Registro de Transacciones',
-                    'url'  => 'movimientos',
-                    'icon' => 'fas fa-fw fa-cash-register',
-                ],
-                // [
-                //     'text' => 'Métodos de pago',
-                //     'url'  => 'metodoPago',
-                //     'icon' => 'fab fa-fw fa-paypal',
-                // ],
-            ],
+            'text' => 'Registro de Transacciones',
+            'url'  => 'movimientos',
+            'icon' => 'fas fa-fw fa-cash-register',
         ],
         [
-            'text'    => 'Módulo de Ventas',
-            'icon'    => 'fas fa-fw fa-store',
-            'submenu' => [
-                [
-                    'text' => 'Nueva Venta',
-                    'url'  => 'ventas/create',
-                    'icon' => 'fas fa-fw fa-cart-plus',
-                ],
-                [
-                    'text' => 'Registro de Ventas',
-                    'url'  => 'ventas',
-                    'icon' => 'fas fa-fw fa-list',
-                ],
-            ],
+            'text' => 'Nueva Venta',
+            'url'  => 'ventas/create',
+            'icon' => 'fas fa-fw fa-cart-plus',
         ],
         [
-            'text'    => 'Módulo de Compras',
-            'icon'    => 'fas fa-fw fa-truck',
-            'submenu' => [                
-                [
-                    'text' => 'Nueva Compra',
-                    'url'  => 'compras/create',
-                    'icon' => 'fas fa-fw fa-receipt',
-                ],
-                [
-                    'text' => 'Registro de Compras',
-                    'url'  => 'compras',
-                    'icon' => 'fas fa-fw fa-list',
-                ],
-            ],
+            'text' => 'Registro de Ventas',
+            'url'  => 'ventas',
+            'icon' => 'fas fa-fw fa-list',
+        ],
+        [
+            'text' => 'Nueva Compra',
+            'url'  => 'compras/create',
+            'icon' => 'fas fa-fw fa-receipt',
+        ],
+        [
+            'text' => 'Registro de Compras',
+            'url'  => 'compras',
+            'icon' => 'fas fa-fw fa-list',
         ],
         // [
         //     'text'    => 'Módulo de Devoluciones',
@@ -381,67 +358,49 @@ return [
         //     'icon' => 'fas fa-fw fa-credit-card',
         // ],
         [
-            'text'    => 'Control de Productos',
-            'icon'    => 'fas fa-fw fa-boxes',
-            'submenu' => [
-                [
-                    'text' => 'Lista de Productos',
-                    'url'  => 'productos',
-                    'icon' => 'fas fa-fw fa-list',
-                ],
-                [
-                    'text' => 'Marcas',
-                    'url'  => 'marcas',
-                    'icon' => 'fas fa-fw fa-bookmark',
-                ],
-                [
-                    'text' => 'Categoría',
-                    'url'  => 'categorias',
-                    'icon' => 'fas fa-fw fa-sitemap',
-                ],
-                [
-                    'text' => 'Laboratorio',
-                    'url'  => 'laboratorios',
-                    'icon' => 'fas fa-fw fa-flask',
-                ],
-                [
-                    'text' => 'Presentaciones',
-                    'url'  => 'presentaciones',
-                    'icon' => 'fas fa-fw fa-tags',
-                ],
-            ],
+            'text' => 'Lista de Productos',
+            'url'  => 'productos',
+            'icon' => 'fas fa-fw fa-list',
         ],
         [
-            'text'    => 'Personas',
-            'icon'    => 'fas fa-fw fa-users',
-            'submenu' => [                
-                [
-                    'text' => 'Proveedores',
-                    'url'  => 'proveedores',
-                    'icon' => 'fas fa-fw fa-user-tie',
-                ],
-                [
-                    'text' => 'Clientes',
-                    'url'  => 'clientes',
-                    'icon' => 'fas fa-fw fa-users',
-                ],
-            ],
+            'text' => 'Marcas',
+            'url'  => 'marcas',
+            'icon' => 'fas fa-fw fa-bookmark',
         ],
         [
-            'text'    => 'Seguridad',
-            'icon'    => 'fas fa-fw fa-cogs',
-            'submenu' => [
-                [
-                    'text' => 'Usuarios',
-                    'url'  => 'users',
-                    'icon' => 'fas fa-fw fa-user',
-                ],
-                [
-                    'text' => 'Roles',
-                    'url'  => 'roles',
-                    'icon' => 'fas fa-fw fa-address-book',
-                ],
-            ],
+            'text' => 'Categoría',
+            'url'  => 'categorias',
+            'icon' => 'fas fa-fw fa-sitemap',
+        ],
+        [
+            'text' => 'Laboratorio',
+            'url'  => 'laboratorios',
+            'icon' => 'fas fa-fw fa-flask',
+        ],
+        [
+            'text' => 'Presentaciones',
+            'url'  => 'presentaciones',
+            'icon' => 'fas fa-fw fa-tags',
+        ],
+        [
+            'text' => 'Proveedores',
+            'url'  => 'proveedores',
+            'icon' => 'fas fa-fw fa-user-tie',
+        ],
+        [
+            'text' => 'Clientes',
+            'url'  => 'clientes',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Usuarios',
+            'url'  => 'users',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Roles',
+            'url'  => 'roles',
+            'icon' => 'fas fa-fw fa-address-book',
         ],
     ],
 
