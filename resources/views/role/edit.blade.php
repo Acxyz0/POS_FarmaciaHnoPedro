@@ -15,44 +15,49 @@
                     EDITAR ROL
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('roles.update',['role'=>$role]) }}" method="post">
+                    <form action="{{ route('roles.update', ['role' => $role]) }}" method="post">
                         @method('PATCH')
                         @csrf
                         <!---Nombre de rol---->
                         <div class="row mb-4">
                             <label for="name" class="col-md-auto col-form-label">Nombre del rol:</label>
                             <div class="col-md-4">
-                                <input type="text" name="name" id="name" class="form-control" value="{{old('name',$role->name)}}">
+                                <input type="text" name="name" id="name" class="form-control"
+                                    value="{{ old('name', $role->name) }}">
                             </div>
                             <div class="col-md-4">
                                 @error('name')
-                                <small class="text-danger">{{'*'.$message}}</small>
+                                    <small class="text-danger">{{ '*' . $message }}</small>
                                 @enderror
                             </div>
                         </div>
-        
+
                         <!---Permisos---->
                         <div class="grid grid-cols-4 gap-2 pb-2 pt-1">
                             <p class="text-muted">Permisos para el rol:</p>
                             @foreach ($permisos as $item)
-                            @if ( in_array($item->id, $role->permissions->pluck('id')->toArray() ) )
-                            <div class="form-check mb-2">
-                                <input checked type="checkbox" name="permission[]" id="{{$item->id}}" class="form-check-input" value="{{$item->name}}">
-                                <label for="{{$item->id}}" class="form-check-label">{{$item->name}}</label>
-                            </div>
-                            @else
-                            <div class="form-check mb-2">
-                                <input type="checkbox" name="permission[]" id="{{$item->id}}" class="form-check-input" value="{{$item->name}}">
-                                <label for="{{$item->id}}" class="form-check-label">{{$item->name}}</label>
-                            </div>
-                            @endif
+                                @if (in_array($item->id, $role->permissions->pluck('id')->toArray()))
+                                    <div class="form-check mb-2">
+                                        <input checked type="checkbox" name="permission[]" id="{{ $item->id }}"
+                                            class="form-check-input" value="{{ $item->name }}">
+                                        <label for="{{ $item->id }}"
+                                            class="form-check-label">{{ $item->name }}</label>
+                                    </div>
+                                @else
+                                    <div class="form-check mb-2">
+                                        <input type="checkbox" name="permission[]" id="{{ $item->id }}"
+                                            class="form-check-input" value="{{ $item->name }}">
+                                        <label for="{{ $item->id }}"
+                                            class="form-check-label">{{ $item->name }}</label>
+                                    </div>
+                                @endif
                             @endforeach
                         </div>
                         @error('permission')
-                        <small class="text-danger">{{'*'.$message}}</small>
+                            <small class="text-danger">{{ '*' . $message }}</small>
                         @enderror
-        
-        
+
+
                         <div class="text-center space-x-4">
                             <button type="submit"
                                 class="bg-green-500 hover:bg-green-600 px-3 py-2 rounded-md text-white font-bold">
@@ -68,7 +73,7 @@
                                 class="bg-slate-500 hover:bg-slate-600 px-3 py-2 rounded-md text-white font-bold">
                                 Reiniciar
                             </button>
-                        </div>        
+                        </div>
                     </form>
                 </div>
             </div>
@@ -78,6 +83,10 @@
 @stop
 
 @push('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .card {
@@ -90,4 +99,8 @@
 @endpush
 
 @section('js')
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 @stop

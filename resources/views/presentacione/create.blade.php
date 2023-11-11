@@ -16,14 +16,16 @@
                     <div class="row">
                         <div class="col-6">
                             <label for="nombre" class="form-label">Nombre:</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control" value="{{old('nombre')}}">
+                            <input type="text" name="nombre" id="nombre" class="form-control"
+                                value="{{ old('nombre') }}">
                             @error('nombre')
                                 <small class="text-red-500 font-bold">{{ '*' . 'El campo nombre es requerido' }}</small>
                             @enderror
                         </div>
                         <div class="col-12">
                             <label for="descripcion" class="form-label">Descripción:</label>
-                            <input name="descripcion" id="descripcion" rows="3" class="form-control" value="{{ old('descripcion') }}">
+                            <input name="descripcion" id="descripcion" rows="3" class="form-control"
+                                value="{{ old('descripcion') }}">
                         </div>
                     </div>
                 </div>
@@ -45,6 +47,10 @@
 @stop
 
 @push('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .card {
             display: flex;
@@ -56,4 +62,8 @@
 @endpush
 
 @section('js')
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 @stop

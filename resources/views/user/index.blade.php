@@ -16,11 +16,11 @@
                 </div>
                 <div class="card-body">
                     @can('crear-user')
-                    <div class="mb-4">
-                        <a href="{{ route('users.create') }}">
-                            <button type="button" class="btn btn-info">Añadir nuevo usuario</button>
-                        </a>
-                    </div>
+                        <div class="mb-4">
+                            <a href="{{ route('users.create') }}">
+                                <button type="button" class="btn btn-info">Añadir nuevo usuario</button>
+                            </a>
+                        </div>
                     @endcan
                     <div id="content-table">
                         <table id="datatablesSimple" class="table table-striped fs-6">
@@ -45,21 +45,21 @@
                                                 <div>
                                                     <!-----Editar usuarios--->
                                                     @can('editar-user')
-                                                    <a href="{{ route('users.edit', ['user' => $item]) }}">
-                                                        <button type="submit" class="bg-warning py-2 px-3 rounded-md">
-                                                            <span class="fas fa-fw fa-pen text-white"></span>
-                                                        </button>
-                                                    </a>
+                                                        <a href="{{ route('users.edit', ['user' => $item]) }}">
+                                                            <button type="submit" class="bg-warning py-2 px-3 rounded-md">
+                                                                <span class="fas fa-fw fa-pen text-white"></span>
+                                                            </button>
+                                                        </a>
                                                     @endcan
                                                 </div>
                                                 <div>
                                                     <!------Eliminar user---->
                                                     @can('eliminar-user')
-                                                    <button title="Eliminar" data-toggle="modal"
-                                                        data-target="#confirmModal-{{ $item->id }}"
-                                                        class="bg-danger py-2 px-3 rounded-md">
-                                                        <span class="fas fa-trash"></span>
-                                                    </button>
+                                                        <button title="Eliminar" data-toggle="modal"
+                                                            data-target="#confirmModal-{{ $item->id }}"
+                                                            class="bg-danger py-2 px-3 rounded-md">
+                                                            <span class="fas fa-trash"></span>
+                                                        </button>
                                                     @endcan
                                                 </div>
                                             </div>
@@ -106,6 +106,10 @@
 @stop
 
 @push('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .card {
@@ -118,4 +122,8 @@
 @endpush
 
 @section('js')
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 @stop
