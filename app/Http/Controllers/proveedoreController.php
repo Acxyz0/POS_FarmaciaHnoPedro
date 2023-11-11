@@ -41,7 +41,7 @@ class proveedoreController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePersonaRequest $request)
+    public function store(storePersonaRequest $request)
     {
         try {
             DB::beginTransaction();

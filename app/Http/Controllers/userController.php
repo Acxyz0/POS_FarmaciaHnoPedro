@@ -42,7 +42,7 @@ class userController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(storeUserRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -86,7 +86,7 @@ class userController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(updateUserRequest $request, User $user)
     {
         try {
             DB::beginTransaction();
