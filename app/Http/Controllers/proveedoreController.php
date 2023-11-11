@@ -79,7 +79,7 @@ class proveedoreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProveedoreRequest $request, Proveedore $proveedore)
+    public function update(updateProveedoreRequest $request, Proveedore $proveedore)
     {
         try{
             DB::beginTransaction();

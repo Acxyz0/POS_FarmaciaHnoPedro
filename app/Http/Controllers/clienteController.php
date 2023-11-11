@@ -40,7 +40,7 @@ class clienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePersonaRequest $request)
+    public function store(storePersonaRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -78,7 +78,7 @@ class clienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateClienteRequest $request, Cliente $cliente)
+    public function update(updateClienteRequest $request, Cliente $cliente)
     {
         try {
             DB::beginTransaction();
