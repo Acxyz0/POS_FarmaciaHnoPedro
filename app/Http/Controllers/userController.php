@@ -42,8 +42,16 @@ class userController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(storeUserRequest $request)
+    public function store(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|min:8|same:password_confirm',
+            'role' => 'required|exists:roles,name'
+        ]);
+
         try {
             DB::beginTransaction();
 
@@ -86,8 +94,17 @@ class userController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(updateUserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
+
+        $user = $this->route('user');
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email,'.$user->id,
+            'password' => 'required|min:8|same:password_confirm',
+            'role' => 'required|exists:roles,name'
+        ]);
+
         try {
             DB::beginTransaction();
 

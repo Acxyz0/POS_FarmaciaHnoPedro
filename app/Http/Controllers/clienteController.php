@@ -8,6 +8,7 @@ use App\Models\Cliente;
 use App\Models\Documento;
 use App\Models\Persona;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class clienteController extends Controller
@@ -40,8 +41,17 @@ class clienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(storePersonaRequest $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'razon_social' => 'required|max:80',
+            'direccion' => 'required|max:80',
+            'tipo_persona' => 'required|string',
+            'documento_id' => 'required|integer',
+            'numero_documento' => 'required|max:20|unique:personas,numero_documento',
+            'nit' => 'required|max:10|unique:personas,nit'
+        ]);
+
         try {
             DB::beginTransaction();
             $persona = Persona::create($request->validated());
@@ -78,8 +88,17 @@ class clienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(updateClienteRequest $request, Cliente $cliente)
+    public function update(Request $request, Cliente $cliente)
     {
+        $cliente = $this->route('cliente');
+        $request->validate([
+            'razon_social' => 'required|max:80',
+            'direccion' => 'required|max:80',
+            'documento_id' => 'required|integer|exists:documentos,id',
+            'numero_documento' => 'required|max:20|unique:personas,numero_documento,' . $cliente->persona->id,
+            'nit' => 'required|max:10|unique:personas,nit,' . $cliente->persona->id
+        ]);
+
         try {
             DB::beginTransaction();
 
