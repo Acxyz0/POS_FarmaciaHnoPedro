@@ -54,7 +54,7 @@ class clienteController extends Controller
 
         try {
             DB::beginTransaction();
-            $persona = Persona::create($request->validated());
+            $persona = Persona::create($request->all());
             $persona->cliente()->create([
                 'persona_id' => $persona->id
             ]);

@@ -55,7 +55,7 @@ class proveedoreController extends Controller
 
         try {
             DB::beginTransaction();
-            $persona = Persona::create($request->validated());
+            $persona = Persona::create($request->all());
             $persona->proveedore()->create([
                 'persona_id' => $persona->id
             ]);
