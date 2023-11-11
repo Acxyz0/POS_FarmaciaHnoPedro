@@ -90,7 +90,6 @@ class clienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        $cliente = $this->route('cliente');
         $request->validate([
             'razon_social' => 'required|max:80',
             'direccion' => 'required|max:80',

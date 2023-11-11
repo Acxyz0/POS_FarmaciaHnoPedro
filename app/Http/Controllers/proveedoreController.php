@@ -91,7 +91,6 @@ class proveedoreController extends Controller
      */
     public function update(Request $request, Proveedore $proveedore)
     {
-        $proveedore = $this->route('proveedore');
         $request->validate([
             'razon_social' => 'required|max:80',
             'direccion' => 'required|max:80',
