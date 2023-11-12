@@ -41,8 +41,8 @@
                                                 <!-----Producto---->
                                                 <div class="col-12 mb-4">
                                                     <select name="producto_id" id="producto_id"
-                                                        class="form-control selectp" data-live-search="true"
-                                                        data-size="5" title="Busque un producto aquí">
+                                                        class="form-control selectpicker" data-live-search="true"
+                                                        data-size="1" title="Busque un producto aquí">
                                                         @foreach ($productos as $item)
                                                             <option value="{{ $item->id }}">
                                                                 {{ $item->codigo . ' ' . $item->nombre }}</option>
@@ -73,7 +73,7 @@
 
                                                 <!-----botón para agregar--->
                                                 <div class="col-12 mb-4 mt-2 text-end">
-                                                    <button id="btn_agregar" class="bg-cyan-600 text-white hover:bg-cyan-700 p-2 rounded-md text-md"
+                                                    <button id="btn_agregar" class="btn btn-info"
                                                         type="button">Agregar</button>
                                                 </div>
 
@@ -149,8 +149,8 @@
                                                 <div class="col-12 mb-2">
                                                     <label for="proveedore_id" class="form-label">Proveedor:</label>
                                                     <select name="proveedore_id" id="proveedore_id"
-                                                        class="form-control show-tick selectp" data-live-search="true"
-                                                        title="Selecciona" data-size='5'>
+                                                        class="form-control selectpicker show-tick" data-live-search="true"
+                                                        title="Selecciona" data-size='2'>
                                                         @foreach ($proveedores as $item)
                                                             <option value="{{ $item->id }}">
                                                                 {{ $item->persona->nit . ' ' . $item->persona->razon_social }}
@@ -166,7 +166,7 @@
                                                 <div class="col-12 mb-2">
                                                     <label for="comprobante_id" class="form-label">Comprobante:</label>
                                                     <select name="comprobante_id" id="comprobante_id"
-                                                        class="form-control selectp" title="Selecciona">
+                                                        class="form-control selectpicker" title="Selecciona">
                                                         @foreach ($comprobantes as $item)
                                                             <option value="{{ $item->id }}">
                                                                 {{ $item->tipo_comprobante }}</option>
@@ -281,7 +281,9 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"
+        integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -369,7 +371,7 @@
 
                 //2. Para que los valores ingresados sean los correctos
                 if (parseInt(cantidad) > 0 && (cantidad % 1 == 0) && parseFloat(precioCompra) > 0 && parseFloat(
-                    precioVenta) > 0) {
+                        precioVenta) > 0) {
 
                     //3. Para que el precio de compra sea menor que el precio de venta
                     if (parseFloat(precioVenta) > parseFloat(precioCompra)) {
@@ -445,7 +447,7 @@
 
         function limpiarCampos() {
             let select = $('#producto_id');
-            select.selectp('val', '');
+            select.selectpicker('val', '');
             $('#cantidad').val('');
             $('#precio_compra').val('');
             $('#precio_venta').val('');
