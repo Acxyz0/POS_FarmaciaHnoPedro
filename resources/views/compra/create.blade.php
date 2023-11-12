@@ -41,7 +41,7 @@
                                                 <!-----Producto---->
                                                 <div class="col-12 mb-4">
                                                     <select name="producto_id" id="producto_id"
-                                                        class="form-control" data-live-search="true"
+                                                        class="form-control selectp" data-live-search="true"
                                                         data-size="5" title="Busque un producto aquí">
                                                         @foreach ($productos as $item)
                                                             <option value="{{ $item->id }}">
@@ -149,7 +149,7 @@
                                                 <div class="col-12 mb-2">
                                                     <label for="proveedore_id" class="form-label">Proveedor:</label>
                                                     <select name="proveedore_id" id="proveedore_id"
-                                                        class="form-control show-tick" data-live-search="true"
+                                                        class="form-control show-tick selectp" data-live-search="true"
                                                         title="Selecciona" data-size='5'>
                                                         @foreach ($proveedores as $item)
                                                             <option value="{{ $item->id }}">
@@ -166,7 +166,7 @@
                                                 <div class="col-12 mb-2">
                                                     <label for="comprobante_id" class="form-label">Comprobante:</label>
                                                     <select name="comprobante_id" id="comprobante_id"
-                                                        class="form-control" title="Selecciona">
+                                                        class="form-control selectp" title="Selecciona">
                                                         @foreach ($comprobantes as $item)
                                                             <option value="{{ $item->id }}">
                                                                 {{ $item->tipo_comprobante }}</option>
@@ -445,7 +445,7 @@
 
         function limpiarCampos() {
             let select = $('#producto_id');
-            select.selectpicker('val', '');
+            select.selectp('val', '');
             $('#cantidad').val('');
             $('#precio_compra').val('');
             $('#precio_venta').val('');
