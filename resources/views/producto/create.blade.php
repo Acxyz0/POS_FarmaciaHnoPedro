@@ -64,7 +64,7 @@
                                     <div class="col-md-6">
                                         <label for="marca_id" class="form-label">Marca:</label>
                                         <select data-size="4" title="Seleccione una marca" data-live-search="true"
-                                            name="marca_id" id="marca_id" class="form-control selectpicker show-tick">
+                                            name="marca_id" id="marca_id" class="form-control">
                                             @foreach ($marcas as $item)
                                                 <option value="{{ $item->id }}"
                                                     {{ old('marca_id') == $item->id ? 'selected' : '' }}>
@@ -80,7 +80,7 @@
                                         <label for="presentacione_id" class="form-label">Presentación:</label>
                                         <select data-size="4" title="Seleccione una presentación" data-live-search="true"
                                             name="presentacione_id" id="presentacione_id"
-                                            class="form-control selectpicker show-tick">
+                                            class="form-control">
                                             @foreach ($presentaciones as $item)
                                                 <option value="{{ $item->id }}"
                                                     {{ old('presentacione_id') == $item->id ? 'selected' : '' }}>
@@ -99,7 +99,7 @@
                                     <div class="col-md-6">
                                         <label for="categorias" class="form-label">Categorías:</label>
                                         <select data-size="4" title="Seleccione las categorías" data-live-search="true"
-                                            name="categorias[]" id="categorias" class="form-control selectpicker show-tick"
+                                            name="categorias[]" id="categorias" class="form-control"
                                             multiple>
                                             @foreach ($categorias as $item)
                                                 <option value="{{ $item->id }}"
@@ -115,7 +115,7 @@
                                         <label for="laboratorio_id" class="form-label">Laboratorio:</label>
                                         <select data-size="4" title="Seleccione un Laboratorio" data-live-search="true"
                                             name="laboratorio_id" id="laboratorio_id"
-                                            class="form-control selectpicker show-tick">
+                                            class="form-control">
                                             @foreach ($laboratorios as $item)
                                                 <option value="{{ $item->id }}"
                                                     {{ old('laboratorio_id') == $item->id ? 'selected' : '' }}>
@@ -155,8 +155,7 @@
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
         .card {
@@ -169,14 +168,11 @@
 @endpush
 
 @section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select-picker@0.3.2/dist/picker.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select-picker@0.3.2/dist/picker.min.css" rel="stylesheet">
     <script>
         let input = document.querySelector('#lote');
         input.addEventListener('keypress', function(e) {
