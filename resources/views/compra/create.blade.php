@@ -41,8 +41,8 @@
                                                 <!-----Producto---->
                                                 <div class="col-12 mb-4">
                                                     <select name="producto_id" id="producto_id"
-                                                        class="form-control selectpicker" data-live-search="true"
-                                                        data-size="1" title="Busque un producto aquí">
+                                                        class="form-control" data-live-search="true"
+                                                        data-size="5" title="Busque un producto aquí">
                                                         @foreach ($productos as $item)
                                                             <option value="{{ $item->id }}">
                                                                 {{ $item->codigo . ' ' . $item->nombre }}</option>
@@ -73,7 +73,7 @@
 
                                                 <!-----botón para agregar--->
                                                 <div class="col-12 mb-4 mt-2 text-end">
-                                                    <button id="btn_agregar" class="btn btn-info"
+                                                    <button id="btn_agregar" class="bg-cyan-600 text-white hover:bg-cyan-700 p-2 rounded-md text-md"
                                                         type="button">Agregar</button>
                                                 </div>
 
@@ -149,8 +149,8 @@
                                                 <div class="col-12 mb-2">
                                                     <label for="proveedore_id" class="form-label">Proveedor:</label>
                                                     <select name="proveedore_id" id="proveedore_id"
-                                                        class="form-control selectpicker show-tick" data-live-search="true"
-                                                        title="Selecciona" data-size='2'>
+                                                        class="form-control show-tick" data-live-search="true"
+                                                        title="Selecciona" data-size='5'>
                                                         @foreach ($proveedores as $item)
                                                             <option value="{{ $item->id }}">
                                                                 {{ $item->persona->nit . ' ' . $item->persona->razon_social }}
@@ -166,7 +166,7 @@
                                                 <div class="col-12 mb-2">
                                                     <label for="comprobante_id" class="form-label">Comprobante:</label>
                                                     <select name="comprobante_id" id="comprobante_id"
-                                                        class="form-control selectpicker" title="Selecciona">
+                                                        class="form-control" title="Selecciona">
                                                         @foreach ($comprobantes as $item)
                                                             <option value="{{ $item->id }}">
                                                                 {{ $item->tipo_comprobante }}</option>

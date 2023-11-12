@@ -65,6 +65,7 @@
                                         <label for="marca_id" class="form-label">Marca:</label>
                                         <select data-size="4" title="Seleccione una marca" data-live-search="true"
                                             name="marca_id" id="marca_id" class="form-control">
+                                            <option value=""></option>
                                             @foreach ($marcas as $item)
                                                 <option value="{{ $item->id }}"
                                                     {{ old('marca_id') == $item->id ? 'selected' : '' }}>
@@ -79,8 +80,8 @@
                                     <div class="col-md-6">
                                         <label for="presentacione_id" class="form-label">Presentación:</label>
                                         <select data-size="4" title="Seleccione una presentación" data-live-search="true"
-                                            name="presentacione_id" id="presentacione_id"
-                                            class="form-control">
+                                            name="presentacione_id" id="presentacione_id" class="form-control">
+                                            <option value=""></option>
                                             @foreach ($presentaciones as $item)
                                                 <option value="{{ $item->id }}"
                                                     {{ old('presentacione_id') == $item->id ? 'selected' : '' }}>
@@ -99,8 +100,8 @@
                                     <div class="col-md-6">
                                         <label for="categorias" class="form-label">Categorías:</label>
                                         <select data-size="4" title="Seleccione las categorías" data-live-search="true"
-                                            name="categorias[]" id="categorias" class="form-control"
-                                            multiple>
+                                            name="categorias[]" id="categorias" class="form-control">
+                                            <option value=""></option>
                                             @foreach ($categorias as $item)
                                                 <option value="{{ $item->id }}"
                                                     {{ in_array($item->id, old('categorias', [])) ? 'selected' : '' }}>
@@ -114,8 +115,8 @@
                                     <div class="col-md-6">
                                         <label for="laboratorio_id" class="form-label">Laboratorio:</label>
                                         <select data-size="4" title="Seleccione un Laboratorio" data-live-search="true"
-                                            name="laboratorio_id" id="laboratorio_id"
-                                            class="form-control">
+                                            name="laboratorio_id" id="laboratorio_id" class="form-control">
+                                            <option value=""></option>
                                             @foreach ($laboratorios as $item)
                                                 <option value="{{ $item->id }}"
                                                     {{ old('laboratorio_id') == $item->id ? 'selected' : '' }}>
@@ -155,7 +156,8 @@
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
         .card {

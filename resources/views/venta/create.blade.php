@@ -41,8 +41,8 @@
                                                 <!-----Producto---->
                                                 <div class="col-md-12">
                                                     <select name="producto_id" id="producto_id"
-                                                        class="form-control selectpicker" data-live-search="true"
-                                                        data-size="1" title="Busque un producto aquí">
+                                                        class="form-control" data-live-search="true"
+                                                        data-size="5" title="Busque un producto aquí">
                                                         @foreach ($productos as $item)
                                                             <option
                                                                 value="{{ $item->id }}-{{ $item->stock }}-{{ $item->precio_venta }}">
@@ -67,7 +67,7 @@
                                                 <!-----Cantidad---->
                                                 <div class="col-md-6 py-2">
                                                     <label for="cantidad" class="form-label">Cantidad:</label>
-                                                    <input type="number" name="cantidad" id="cantidad"
+                                                    <input type="number" name="cantidad" id="cantidad" min="0"
                                                         class="form-control">
                                                 </div>
 
@@ -75,12 +75,12 @@
                                                 <div class="col-md-6 py-2">
                                                     <label for="descuento" class="form-label">Descuento:</label>
                                                     <input type="number" name="descuento" id="descuento"
-                                                        class="form-control" step="0.1">
+                                                        class="form-control" step="0.1" min="0">
                                                 </div>
 
                                                 <!-----botón para agregar--->
                                                 <div class="col-12 py-2 text-end">
-                                                    <button id="btn_agregar" class="btn btn-info"
+                                                    <button id="btn_agregar" class="bg-cyan-600 text-white hover:bg-cyan-700 p-2 rounded-md text-md"
                                                         type="button">Agregar</button>
                                                 </div>
 
@@ -156,8 +156,9 @@
                                                 <div class="col-12">
                                                     <label for="cliente_id" class="form-label">Cliente:</label>
                                                     <select name="cliente_id" id="cliente_id"
-                                                        class="form-control selectpicker show-tick"
+                                                        class="form-control show-tick"
                                                         data-live-search="true" title="Selecciona" data-size='5'>
+                                                        <option value=""></option>
                                                         @foreach ($clientes as $item)
                                                             <option value="{{ $item->id }}">
                                                                 {{ $item->persona->nit . ' - ' . $item->persona->razon_social }}
@@ -173,7 +174,8 @@
                                                 <div class="col-12">
                                                     <label for="comprobante_id" class="form-label">Comprobante:</label>
                                                     <select name="comprobante_id" id="comprobante_id"
-                                                        class="form-control selectpicker" title="Selecciona">
+                                                        class="form-control" title="Selecciona">
+                                                        <option value=""></option>
                                                         @foreach ($comprobantes as $item)
                                                             <option value="{{ $item->id }}">
                                                                 {{ $item->tipo_comprobante }}</option>
